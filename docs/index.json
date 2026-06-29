@@ -55,6 +55,12 @@
           "title": "Docmost — Wiki & Docs",
           "description": "Create and organize notes, wikis, and documentation",
           "file": "apps/docmost"
+        },
+        {
+          "icon": "💼",
+          "title": "Odoo — Business Suite",
+          "description": "CRM, invoicing, inventory, and project management in one app",
+          "file": "apps/odoo"
         }
       ]
     },
