@@ -1,0 +1,73 @@
+{
+  "categories": [
+    {
+      "name": "Getting Started",
+      "items": [
+        {
+          "icon": "🚀",
+          "title": "First Steps",
+          "description": "Log in, explore the dashboard, and set up your PCS",
+          "file": "getting-started"
+        },
+        {
+          "icon": "🛍️",
+          "title": "App Store",
+          "description": "Install, update, and manage apps on your PCS",
+          "file": "app-store"
+        },
+        {
+          "icon": "📁",
+          "title": "File Manager",
+          "description": "Upload, download, and organize your files",
+          "file": "file-manager"
+        },
+        {
+          "icon": "⚙️",
+          "title": "Settings",
+          "description": "Configure system preferences and user settings",
+          "file": "settings"
+        }
+      ]
+    },
+    {
+      "name": "App Guides",
+      "items": [
+        {
+          "icon": "📸",
+          "title": "Immich — Photo Backup",
+          "description": "Back up photos from your phone and browse them on the web",
+          "file": "apps/immich"
+        },
+        {
+          "icon": "🎬",
+          "title": "Jellyfin — Media Server",
+          "description": "Stream your movies, TV shows, and music from anywhere",
+          "file": "apps/jellyfin"
+        },
+        {
+          "icon": "📖",
+          "title": "Suwayomi — Manga Reader",
+          "description": "Read manga from 1200+ sources in one app",
+          "file": "apps/suwayomi"
+        },
+        {
+          "icon": "📝",
+          "title": "Docmost — Wiki & Docs",
+          "description": "Create and organize notes, wikis, and documentation",
+          "file": "apps/docmost"
+        }
+      ]
+    },
+    {
+      "name": "Help",
+      "items": [
+        {
+          "icon": "🔧",
+          "title": "Troubleshooting",
+          "description": "Common issues and how to fix them",
+          "file": "troubleshooting"
+        }
+      ]
+    }
+  ]
+}
