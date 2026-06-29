@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var DOCS_BASE = 'https://raw.githubusercontent.com/Yundera/AppStore/main/Apps/Guide/docs';
+  var DOCS_BASE = 'https://raw.githubusercontent.com/BookJJun-IJ/GuideApp/main/docs';
 
   // ========== Index Page ==========
   function initIndex() {

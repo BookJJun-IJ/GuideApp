@@ -66,6 +66,12 @@
           "title": "Troubleshooting",
           "description": "Common issues and how to fix them",
           "file": "troubleshooting"
+        },
+        {
+          "icon": "🧪",
+          "title": "Test Page",
+          "description": "Verify that the Guide app is working correctly",
+          "file": "test"
         }
       ]
     }
