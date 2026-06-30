@@ -1,45 +1,34 @@
-# First Steps with Your PCS
+# Welcome to Your PCS
 
-Welcome to your Personal Cloud Server! This guide will help you get started.
+Your PCS (Personal Cloud Server) is your own little piece of the internet. Everything on it is yours — your files, your photos, your apps. Nobody else can see them.
 
 ## Logging In
 
-1. Open your browser and go to the URL provided by Yundera (e.g., `https://yourname.nsl.sh`)
+1. Open the link you received from Yundera in your browser
 2. Enter your username and password
-3. You'll see the CasaOS dashboard — this is your home screen
+3. You're in — welcome to your dashboard
 
-## The Dashboard
+## What You See
 
-The dashboard shows all your installed apps as tiles. You can:
+Your dashboard shows all your apps as tiles. Click any tile to open that app.
 
-- **Click any tile** to open that app
-- **Drag tiles** to rearrange them
-- **Right-click a tile** to see options like settings or uninstall
-
-## Your Default Apps
-
-Your PCS comes with these apps pre-installed:
+You start with three apps:
 
 | App | What it does |
 |-----|-------------|
-| **App Store** | Browse and install new apps |
-| **Files** | Manage files on your PCS |
-| **Settings** | Configure your PCS |
-| **Guide** | You're reading it right now! |
+| **App Store** | Install new apps |
+| **File Manager** | Upload and manage files |
+| **Settings** | Change your password and check system info |
 
-## Two Ways to Access Your PCS
+## Your Two URLs
 
-Your PCS has two URLs:
+Your PCS gives you two web addresses:
 
-| URL Type | Format | Best for |
-|----------|--------|----------|
-| **nsl.sh** | `https://yourname.nsl.sh` | Daily use, works everywhere |
-| **sslip.io** | `https://app-x-x-x-x.sslip.io` | Large file uploads (no size limit) |
+- **nsl.sh** — use this for everything (fast, secure)
+- **sslip.io** — use this when uploading large files (no size limit)
 
-> **Tip:** Use the sslip.io URL when uploading large files like photos or videos. The nsl.sh URL has a 100MB upload limit per file.
+Both go to the same PCS. Just use nsl.sh unless you're uploading something big.
 
 ## What's Next?
 
-- [Install your first app](guide.html?doc=app-store) from the App Store
-- [Upload some files](guide.html?doc=file-manager) to your PCS
-- [Set up Immich](guide.html?doc=apps/immich) for automatic photo backup from your phone
+Head to the App Store and install your first app. We recommend starting with **Immich** (photo backup) — it's the easiest way to see what your PCS can do.

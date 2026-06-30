@@ -1,79 +1,221 @@
 {
-  "categories": [
+  "goals": [
     {
-      "name": "Getting Started",
-      "items": [
-        {
-          "icon": "🚀",
-          "title": "First Steps",
-          "description": "Log in, explore the dashboard, and set up your PCS",
-          "file": "getting-started"
-        },
-        {
-          "icon": "🛍️",
-          "title": "App Store",
-          "description": "Install, update, and manage apps on your PCS",
-          "file": "app-store"
-        },
-        {
-          "icon": "📁",
-          "title": "File Manager",
-          "description": "Upload, download, and organize your files",
-          "file": "file-manager"
-        },
-        {
-          "icon": "⚙️",
-          "title": "Settings",
-          "description": "Configure system preferences and user settings",
-          "file": "settings"
-        }
-      ]
+      "id": "photos",
+      "icon": "📸",
+      "replaces": "Google Photos",
+      "title": {
+        "beginner": "Keep my photos safe and private",
+        "intermediate": "Self-host my photo library",
+        "developer": "Deploy Immich — ML photo stack with Postgres/Redis"
+      },
+      "reward": "All your phone photos, saved on your own cloud — private, and yours forever.",
+      "time": "2 min",
+      "steps": {
+        "beginner": [
+          "Open the App Store and install \"Immich\"",
+          "Download the Immich app on your phone and log in",
+          "Turn on Auto Backup — done, your photos are safe"
+        ],
+        "intermediate": [
+          "Install Immich from the App Store",
+          "Connect via the mobile app using your nsl.sh URL",
+          "Enable auto backup and configure album sync"
+        ],
+        "developer": [
+          "Install Immich (uses Postgres + Redis + ML microservices)",
+          "Access at immich-{id}.nsl.sh, API at /api",
+          "Configure OAuth, external storage at /DATA/Gallery/"
+        ]
+      },
+      "doc": "apps/immich",
+      "featured": true
     },
     {
-      "name": "App Guides",
-      "items": [
-        {
-          "icon": "📸",
-          "title": "Immich — Photo Backup",
-          "description": "Back up photos from your phone and browse them on the web",
-          "file": "apps/immich"
-        },
-        {
-          "icon": "🎬",
-          "title": "Jellyfin — Media Server",
-          "description": "Stream your movies, TV shows, and music from anywhere",
-          "file": "apps/jellyfin"
-        },
-        {
-          "icon": "📖",
-          "title": "Suwayomi — Manga Reader",
-          "description": "Read manga from 1200+ sources in one app",
-          "file": "apps/suwayomi"
-        },
-        {
-          "icon": "📝",
-          "title": "Docmost — Wiki & Docs",
-          "description": "Create and organize notes, wikis, and documentation",
-          "file": "apps/docmost"
-        },
-        {
-          "icon": "💼",
-          "title": "Odoo — Business Suite",
-          "description": "CRM, invoicing, inventory, and project management in one app",
-          "file": "apps/odoo"
-        }
-      ]
+      "id": "movies",
+      "icon": "🎬",
+      "replaces": "Netflix",
+      "title": {
+        "beginner": "Watch my movies and shows from anywhere",
+        "intermediate": "Stream my media library remotely",
+        "developer": "Deploy Jellyfin — media server with hardware transcoding"
+      },
+      "reward": "Your own streaming service — your movies, shows, and music, anywhere.",
+      "time": "5 min",
+      "steps": {
+        "beginner": [
+          "Open the App Store and install \"Jellyfin\"",
+          "Upload your movies using the File Manager",
+          "Open Jellyfin and start watching"
+        ],
+        "intermediate": [
+          "Install Jellyfin and add media libraries",
+          "Organize files in /DATA/Media/Movies/ and /DATA/Media/TV/",
+          "Install Jellyfin or Swiftfin on your phone/TV"
+        ],
+        "developer": [
+          "Install Jellyfin, media at /DATA/Media/",
+          "Hardware transcoding via VA-API if available",
+          "Multi-user setup via Dashboard > Users"
+        ]
+      },
+      "doc": "apps/jellyfin",
+      "featured": true
     },
     {
-      "name": "Help",
-      "items": [
-        {
-          "icon": "🔧",
-          "title": "Troubleshooting",
-          "description": "Common issues and how to fix them",
-          "file": "troubleshooting"
-        }
-      ]
+      "id": "files",
+      "icon": "📁",
+      "replaces": "Google Drive",
+      "title": {
+        "beginner": "Store my files in my own cloud",
+        "intermediate": "Manage cloud file storage",
+        "developer": "Access /DATA via File Manager or SSH"
+      },
+      "reward": "Your own Google Drive — drag, drop, and access your files from any device.",
+      "time": "1 min",
+      "steps": {
+        "beginner": [
+          "Open the File Manager from your dashboard",
+          "Drag and drop files to upload them",
+          "Click any file to download or share it"
+        ],
+        "intermediate": [
+          "Open File Manager, navigate to /DATA/",
+          "Upload via drag & drop, use sslip.io URL for large files",
+          "Share files with public links"
+        ],
+        "developer": [
+          "File Manager at /DATA/, SSH for direct access",
+          "Large uploads via sslip.io (no size limit)",
+          "Mount external storage under /DATA/"
+        ]
+      },
+      "doc": "file-manager",
+      "featured": true
+    },
+    {
+      "id": "gaming",
+      "icon": "🎮",
+      "replaces": "Minecraft Server Hosting",
+      "title": {
+        "beginner": "Play Minecraft with my friends",
+        "intermediate": "Host a Minecraft server",
+        "developer": "Deploy Crafty — multi-server game panel"
+      },
+      "reward": "Your own Minecraft server — invite friends, no monthly fees.",
+      "time": "3 min",
+      "steps": {
+        "beginner": [
+          "Open the App Store and install \"Crafty\"",
+          "Create a new Minecraft server inside Crafty",
+          "Share your server address with friends and play"
+        ],
+        "intermediate": [
+          "Install Crafty from the App Store",
+          "Create server, configure whitelist and difficulty",
+          "Port 25565 is auto-forwarded, share your nsl.sh address"
+        ],
+        "developer": [
+          "Crafty manages multiple MC server instances",
+          "Web panel for config, console, and backups",
+          "Custom JARs (Paper, Fabric, Forge) supported"
+        ]
+      },
+      "doc": null,
+      "featured": true
+    },
+    {
+      "id": "manga",
+      "icon": "📖",
+      "replaces": "Manga Apps",
+      "title": {
+        "beginner": "Read manga without ads",
+        "intermediate": "Self-host a manga reader",
+        "developer": "Deploy Suwayomi with Byparr for Cloudflare bypass"
+      },
+      "reward": "Read manga from 1,200+ sources — no ads, no tracking, no limits.",
+      "time": "2 min",
+      "steps": {
+        "beginner": [
+          "Open the App Store and install \"Suwayomi\"",
+          "Open Suwayomi and add manga sources you like",
+          "Search for manga and start reading"
+        ],
+        "intermediate": [
+          "Install Suwayomi, enable extensions by language",
+          "Add to library for chapter tracking",
+          "Downloads stored in /DATA/Media/Mangas/"
+        ],
+        "developer": [
+          "Suwayomi with Byparr sidecar for CF-protected sources",
+          "REST API available for automation",
+          "Tachiyomi-compatible extension system"
+        ]
+      },
+      "doc": "apps/suwayomi",
+      "featured": false
+    },
+    {
+      "id": "wiki",
+      "icon": "📝",
+      "replaces": "Notion",
+      "title": {
+        "beginner": "Write notes and organize my ideas",
+        "intermediate": "Self-host a wiki and knowledge base",
+        "developer": "Deploy Docmost — collaborative wiki with API"
+      },
+      "reward": "Your own Notion — write notes, build wikis, keep everything organized and private.",
+      "time": "2 min",
+      "steps": {
+        "beginner": [
+          "Open the App Store and install \"Docmost\"",
+          "Create your first page and start writing",
+          "Organize pages into spaces by topic"
+        ],
+        "intermediate": [
+          "Install Docmost, create workspace",
+          "Use /commands for blocks, Ctrl+K for search",
+          "Invite members via Settings > Members"
+        ],
+        "developer": [
+          "Docmost with Postgres backend",
+          "Export pages as Markdown or HTML",
+          "Public page sharing via toggle"
+        ]
+      },
+      "doc": "apps/docmost",
+      "featured": false
+    },
+    {
+      "id": "business",
+      "icon": "💼",
+      "replaces": "Salesforce / QuickBooks",
+      "title": {
+        "beginner": "Manage my business online",
+        "intermediate": "Self-host CRM and invoicing",
+        "developer": "Deploy Odoo — modular ERP with 30+ apps"
+      },
+      "reward": "CRM, invoicing, inventory — everything your business needs, on your own server.",
+      "time": "3 min",
+      "steps": {
+        "beginner": [
+          "Open the App Store and install \"Odoo\"",
+          "Create a database with your company name",
+          "Install the apps you need (CRM, Invoicing, etc.)"
+        ],
+        "intermediate": [
+          "Install Odoo, create database with admin credentials",
+          "Install modules: CRM, Invoicing, Project, Inventory",
+          "Add users via Settings > Users & Companies"
+        ],
+        "developer": [
+          "Odoo 19.0 with Postgres, data at /DATA/AppData/odoo/",
+          "Custom modules via /mnt/extra-addons",
+          "proxy_mode = True pre-configured for reverse proxy"
+        ]
+      },
+      "doc": "apps/odoo",
+      "featured": false
     }
   ]
 }

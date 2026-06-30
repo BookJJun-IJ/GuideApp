@@ -1,71 +1,34 @@
 # Settings
 
-The Settings app lets you configure your PCS system preferences, manage users, and check system status.
-
-## Opening Settings
-
-Click the **Settings** tile on your dashboard. You can also access it from the sidebar menu.
-
-## System Info
-
-The **System Info** panel shows:
-
-| Item | Description |
-|------|-------------|
-| **Hostname** | Your PCS device name |
-| **OS Version** | Current CasaOS version |
-| **CPU / RAM** | Live usage and total capacity |
-| **Storage** | Disk usage breakdown |
-| **Uptime** | How long the PCS has been running |
+The Settings app lets you check on your PCS and change basic preferences.
 
 ## Changing Your Password
 
 1. Go to **Settings > User**
 2. Click **Change Password**
-3. Enter your current password
-4. Enter and confirm your new password
-5. Click **Save**
+3. Enter your current password, then your new one
+4. Click **Save**
 
-> **Tip:** Use a strong password — at least 12 characters with a mix of letters, numbers, and symbols.
+## Checking System Info
 
-## Managing Storage
+Open **Settings > System Info** to see:
 
-Your PCS has a single disk. To check how much space you have:
+- How much storage you've used
+- CPU and memory usage
+- How long the PCS has been running
 
-1. Open **Settings > System Info**
-2. Look at the **Storage** bar
+## Running Low on Storage?
 
-If storage is running low:
+If your disk is getting full:
 
-- Delete unused apps from the App Store
-- Remove old files from the File Manager
-- Clear media you no longer need from `/DATA/Media/`
-
-## Network Settings
-
-Your PCS has two types of URLs:
-
-| URL Type | Format | Use Case |
-|----------|--------|----------|
-| **nsl.sh** | `appname-yourid.nsl.sh` | Day-to-day access (HTTPS, secure) |
-| **sslip.io** | `appname-yourid-ip.sslip.io` | Large file uploads (no size limit) |
-
-Both URLs point to the same PCS — only the routing differs.
+1. Delete apps you don't use (App Store > Uninstall)
+2. Remove old files from the File Manager
+3. Clear media you no longer want from `/DATA/Media/`
 
 ## Restarting Your PCS
 
-If something isn't working correctly:
+If something isn't working right:
 
 1. Go to **Settings > System**
 2. Click **Restart**
-3. Wait for the PCS to come back online (usually 1-2 minutes)
-
-> **Note:** All running apps will temporarily stop during a restart and automatically start again.
-
-## Shutting Down
-
-1. Go to **Settings > System**
-2. Click **Shutdown**
-3. Your PCS will safely power off
-
-To turn it back on, press the physical power button on your device.
+3. Wait a minute or two — everything comes back automatically

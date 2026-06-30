@@ -3,29 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PCS Guide</title>
+  <title>Help — Your PCS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <header class="header">
     <div class="header-content">
-      <h1 class="header-title">Welcome to your PCS</h1>
-      <p class="header-subtitle">Everything you need to get started with your Personal Cloud Server</p>
-      <div class="search-bar">
-        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input type="text" id="search" placeholder="Search guides..." autocomplete="off">
+      <h1 class="header-title">What do you want to do?</h1>
+      <p class="header-subtitle">Your cloud, explained simply.</p>
+      <div class="audience-toggle">
+        <span class="toggle-label">Show me</span>
+        <button class="toggle-btn active" data-level="beginner">First time</button>
+        <button class="toggle-btn" data-level="intermediate">I've done this</button>
+        <button class="toggle-btn" data-level="developer">Developer</button>
       </div>
     </div>
   </header>
 
+  <!-- First-time banner -->
+  <div class="first-time-banner" id="first-time-banner">
+    <span class="banner-icon">👋</span>
+    <span class="banner-text">First time? The easiest place to start is <strong>your photos</strong></span>
+    <button class="banner-btn" id="banner-cta">Show me →</button>
+  </div>
+
   <main class="main">
-    <div id="cards-container"></div>
+    <div class="search-bar">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search" placeholder="Search... (e.g. photos, movies, files)" autocomplete="off">
+    </div>
+
+    <div id="goals-container"></div>
+
+    <div class="show-more-wrap" id="show-more-wrap">
+      <button class="show-more-btn" id="show-more-btn">Show more goals</button>
+    </div>
   </main>
 
+  <!-- Goal detail sheet (modal) -->
+  <div class="sheet-overlay hidden" id="sheet-overlay">
+    <div class="sheet" id="sheet">
+      <button class="sheet-close" id="sheet-close">&times;</button>
+      <div class="sheet-replaces" id="sheet-replaces"></div>
+      <h2 class="sheet-title" id="sheet-title"></h2>
+      <p class="sheet-reward" id="sheet-reward"></p>
+      <div class="sheet-badges">
+        <span class="badge" id="badge-time"></span>
+        <span class="badge badge-safe">you can't break anything</span>
+      </div>
+      <p class="sheet-access" id="sheet-access">You'll open it in your web browser, just like any website.</p>
+      <ol class="sheet-steps" id="sheet-steps"></ol>
+      <div class="sheet-footer">
+        <a class="sheet-btn" id="sheet-learn-more" href="#">Learn more →</a>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
-    <p>Yundera PCS &mdash; Your data, your cloud, your rules.</p>
+    <p>Yundera — A cloud that's actually yours.</p>
   </footer>
 
   <script src="js/app.js"></script>

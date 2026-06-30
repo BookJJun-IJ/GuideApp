@@ -1,74 +1,43 @@
-# Immich — Photo Backup
+# Immich — Your Own Google Photos
 
-Immich is a self-hosted photo and video backup solution. It automatically backs up photos from your phone and lets you browse them on the web — like Google Photos, but on your own PCS.
+Immich backs up every photo and video from your phone to your PCS. Private, automatic, and unlimited.
 
-## Installing Immich
+## Getting Started
 
-1. Open the **App Store**
-2. Search for **Immich**
-3. Click **Install**
-4. Wait for the installation to complete
+1. Open **App Store** and install **Immich**
+2. Open Immich and create an admin account
+3. Remember your password — there's no reset without it
 
-## First-Time Setup
+## Phone Setup
 
-1. Open Immich from your dashboard
-2. Create an admin account (email + password)
-3. You're ready to start uploading photos
-
-> **Important:** Remember your admin credentials — there is no password reset without them.
-
-## Setting Up Mobile Backup
-
-### iOS
+### iPhone
 
 1. Download **Immich** from the App Store
-2. Open the app and tap **Login**
-3. Enter your PCS server URL (e.g., `https://immich-yourid.nsl.sh`)
-4. Log in with your admin account
-5. Grant photo access when prompted
-6. Enable **Auto Backup** in the app settings
+2. Enter your PCS URL (e.g. `https://immich-yourname.nsl.sh`)
+3. Log in and allow photo access
+4. Turn on **Auto Backup**
 
 ### Android
 
 1. Download **Immich** from Google Play
-2. Open the app and tap **Login**
-3. Enter your PCS server URL (e.g., `https://immich-yourid.nsl.sh`)
-4. Log in with your admin account
-5. Grant photo access when prompted
-6. Enable **Auto Backup** in the app settings
+2. Enter your PCS URL
+3. Log in and allow photo access
+4. Turn on **Auto Backup**
 
-## Browsing Photos on the Web
+Your photos will start uploading in the background. Leave the app open for the first sync.
 
-1. Open Immich from your PCS dashboard
-2. Use the **Timeline** to scroll through photos by date
-3. Use **Search** to find photos by content, location, or face
-4. Click any photo to view it full-screen
+## Browsing Photos
 
-## Creating Albums
+- Open Immich in your browser to see your photo timeline
+- Use **Search** to find photos by content or faces
+- Create **Albums** to organize photos into collections
 
-1. Go to **Albums** in the sidebar
-2. Click **+ Create Album**
-3. Give it a name
-4. Add photos by selecting them from your library
-
-## Sharing Photos
+## Sharing
 
 1. Open an album
-2. Click the **Share** button
-3. Create a shared link
-4. Send the link — recipients can view without an account
+2. Click **Share** and create a link
+3. Anyone with the link can view — no account needed
 
-## Uploading from Your Computer
+## Large Uploads
 
-You can upload photos directly through the web interface:
-
-1. Open Immich on your browser
-2. Click the **Upload** button (cloud icon in the top bar)
-3. Select photos from your computer
-4. They will appear in your timeline
-
-> **Tip:** For large uploads (over 100 MB), use the **sslip.io** URL instead of nsl.sh — it has no upload size limit.
-
-## Storage
-
-Immich stores photos in `/DATA/Gallery/` on your PCS. You can also view these files through the File Manager.
+If you're uploading from a computer and the files are large, use the **sslip.io** URL instead of nsl.sh.

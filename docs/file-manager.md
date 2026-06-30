@@ -1,44 +1,39 @@
 # File Manager
 
-The File Manager lets you upload, download, and organize files on your PCS.
-
-## Opening the File Manager
-
-Click the **Files** tile on your dashboard, or navigate to it from the sidebar.
+The File Manager lets you upload, download, and organize files on your PCS — like Google Drive, but fully private.
 
 ## Uploading Files
 
-1. Navigate to the folder where you want to upload
-2. Click the **Upload** button (or drag and drop files)
-3. Select files from your computer
-4. Wait for the upload to complete
+1. Open **File Manager** from your dashboard
+2. Navigate to the folder you want
+3. Drag and drop files into the browser window
 
-> **Tip:** For files larger than 100MB, use the **sslip.io** URL instead of the nsl.sh URL. The sslip.io URL has no upload size limit.
-
-## Folder Structure
-
-Your PCS organizes files into these main folders:
-
-| Folder | Purpose | Used by |
-|--------|---------|---------|
-| `/DATA/Documents/` | Personal documents | You |
-| `/DATA/Downloads/` | Downloaded files | You |
-| `/DATA/Gallery/` | Photos and images | Immich imports from here |
-| `/DATA/Media/` | Media files | Jellyfin, music apps |
-| `/DATA/Media/Music/` | Music files | Music apps |
-| `/DATA/Media/Movies/` | Movie files | Jellyfin |
-| `/DATA/Media/TV/` | TV show files | Jellyfin |
-| `/DATA/Media/Mangas/` | Manga downloads | Suwayomi |
-
-## Sharing Files
-
-1. Right-click a file or folder
-2. Select **Share**
-3. Copy the generated link
-4. Send the link to anyone — no account needed to download
+> **Tip:** For files over 100 MB, use your **sslip.io** URL instead of nsl.sh — no size limit.
 
 ## Downloading Files
 
-1. Navigate to the file you want
-2. Click on it to preview, or right-click and select **Download**
-3. The file will download to your computer
+1. Find the file you want
+2. Click it
+3. Click **Download**
+
+## Creating Folders
+
+1. Click the **New Folder** button
+2. Give it a name
+3. Done
+
+## Where Things Live
+
+| Folder | What's in it |
+|--------|-------------|
+| `/DATA/Media/` | Movies, TV shows, music |
+| `/DATA/Gallery/` | Photos backed up from Immich |
+| `/DATA/Documents/` | Your documents |
+| `/DATA/AppData/` | App settings (don't touch this) |
+
+## Sharing a File
+
+1. Right-click the file
+2. Select **Share**
+3. Copy the link
+4. Send it to anyone — they can download without an account
