@@ -13,6 +13,7 @@ if (document.getElementById('grid')) {
 
 const ACCENT = { pink:"#ee2a7b", blue:"#27aae1" };
 const CHK = '<svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const APP_COUNT = "100+"; /* avoid hardcoding exact number across translations */
 
 /* language-agnostic metadata */
 const GOALS = [
@@ -48,8 +49,8 @@ const T = {
       stuckPre:"Stuck on a step? ", stuckLink:"Ask us, we'll help.",
       cta:{ open:a=>"Open "+a, get:a=>"Get "+a, install:a=>"Install "+a } },
     copy:{
-      new:{h:'What would you like to <span class="em">do</span>?', p:"Your cloud is ready. Pick a goal in plain words and we'll show you the few taps to get there. No tech knowledge needed.", kicker:"Get started", grid:"I want to…", hint:"Tap a goal", helpT:"Can't find what you're after?", helpP:"There are 128 apps in the store. Search it, or ask us, we read every message.", featured:true},
-      comfortable:{h:'Your cloud, <span class="em">your call</span>.', p:"Choose what you want to run. Each goal gives you the app and the short path to a working setup.", kicker:"Set up", grid:"I want to set up…", hint:"Tap a goal", helpT:"Want the full catalogue?", helpP:"Browse 128 maintained open-source apps in the App Store.", featured:false},
+      new:{h:'What would you like to <span class="em">do</span>?', p:"Your cloud is ready. Pick a goal in plain words and we'll show you the few taps to get there. No tech knowledge needed.", kicker:"Get started", grid:"I want to…", hint:"Tap a goal", helpT:"Can't find what you're after?", helpP:"There are "+APP_COUNT+" apps in the store. Search it, or ask us, we read every message.", featured:true},
+      comfortable:{h:'Your cloud, <span class="em">your call</span>.', p:"Choose what you want to run. Each goal gives you the app and the short path to a working setup.", kicker:"Set up", grid:"I want to set up…", hint:"Tap a goal", helpT:"Want the full catalogue?", helpP:"Browse "+APP_COUNT+" maintained open-source apps in the App Store.", featured:false},
       dev:{h:'Welcome. Let\'s <span class="em">ship</span>.', p:"PCS runs CasaOS on Docker with NSL.SH handling routing and TLS. Pick a goal, or go straight to custom apps and packaging.", kicker:"Tasks", grid:"Common tasks", hint:"Tap a task", helpT:"Building on the PCS?", helpP:"Custom Docker apps, SSH, MCPs and AppStore contribution are all open to you.", featured:false}
     },
     setup:{ new:["Create your login","Make it yours","Install your first app"], comfortable:["Create your account","Set language & widgets","Install your first app"], dev:["Create admin account","Grab SSH access","Install or package an app"] },
@@ -107,11 +108,11 @@ const T = {
       stuckPre:"Bloqué à une étape ? ", stuckLink:"Écrivez-nous, on vous aide.",
       cta:{ open:a=>"Ouvrir "+a, get:a=>"Installer "+a, install:a=>"Installer "+a } },
     copy:{
-      new:{h:'<span class="em">Que</span> voulez-vous faire ?', p:"Votre cloud est prêt. Choisissez un objectif en mots simples, et on vous montre les quelques étapes pour y arriver. Aucune compétence technique requise.", kicker:"Pour commencer", grid:"Je veux…", hint:"Touchez un objectif", helpT:"Vous ne trouvez pas ?", helpP:"Il y a 128 applis dans l'App Store. Cherchez, ou écrivez-nous : on lit chaque message.", featured:true},
-      comfortable:{h:'Votre cloud, <span class="em">vos règles</span>.', p:"Choisissez ce que vous voulez installer. Chaque objectif vous donne l'appli et le chemin court vers une installation qui marche.", kicker:"Configurer", grid:"Je veux configurer…", hint:"Touchez un objectif", helpT:"Vous voulez tout le catalogue ?", helpP:"Parcourez 128 applis open source maintenues dans l'App Store.", featured:false},
+      new:{h:'<span class="em">Que</span> voulez-vous faire ?', p:"Votre cloud est prêt. Choisissez un objectif en mots simples, et on vous montre les quelques étapes pour y arriver. Aucune compétence technique requise.", kicker:"Pour commencer", grid:"Je veux…", hint:"Touchez un objectif", helpT:"Vous ne trouvez pas ?", helpP:"Il y a "+APP_COUNT+" applis dans l'App Store. Cherchez, ou écrivez-nous : on lit chaque message.", featured:true},
+      comfortable:{h:'Votre cloud, <span class="em">vos règles</span>.', p:"Choisissez ce que vous voulez installer. Chaque objectif vous donne l'appli et le chemin court vers une installation qui marche.", kicker:"Configurer", grid:"Je veux configurer…", hint:"Touchez un objectif", helpT:"Vous voulez tout le catalogue ?", helpP:"Parcourez "+APP_COUNT+" applis open source maintenues dans l'App Store.", featured:false},
       dev:{h:'Bienvenue. <span class="em">On déploie</span>.', p:"Le PCS tourne sous CasaOS sur Docker, NSL.SH gère le routage et le TLS. Choisissez un objectif, ou allez directement aux apps custom et au packaging.", kicker:"Tâches", grid:"Tâches courantes", hint:"Touchez une tâche", helpT:"Vous développez sur le PCS ?", helpP:"Apps Docker custom, SSH, MCPs et contribution à l'AppStore : tout vous est ouvert.", featured:false}
     },
-    setup:{ new:["Créez votre identifiant","Personnalisez","Installez votre première appli"], comfortable:["Créez votre compte","Langue et widgets","Installez votre première appli"] },
+    setup:{ new:["Créez votre identifiant","Personnalisez","Installez votre première appli"], comfortable:["Créez votre compte","Langue et widgets","Installez votre première appli"], dev:["Créez votre compte admin","Accès SSH","Installez ou packagez une appli"] },
     goals:{
       photos:{ new:{title:"Garder mes photos en privé",analogy:"Votre propre Google Photos",payoff:"Toutes les photos de votre téléphone, enregistrées sur votre cloud. Privées, et à vous pour toujours.",steps:["Dans l'App Store, trouvez <b>Immich</b> et appuyez sur Installer.","Ouvrez Immich et créez votre compte.","Installez l'appli Immich sur votre téléphone, scannez le code, et vos photos se sauvegardent toutes seules."]},
         comfortable:{title:"Héberger ma photothèque",analogy:"Immich, sauvegarde photo privée",payoff:"Une photothèque privée en pleine qualité, avec sauvegarde automatique du téléphone.",steps:["Installez <b>Immich</b> depuis l'App Store (mises à jour auto activées).","Connectez-vous sur votre sous-domaine photos.","Ajoutez l'appli mobile, pointez-la vers votre serveur, activez la sauvegarde en arrière-plan."]} },
@@ -134,64 +135,92 @@ const T = {
       convert:{ new:{title:"Convertir un fichier dans un autre format",analogy:"Votre propre convertisseur de fichiers",payoff:"Transformez une photo, un document ou une vidéo dans un autre format, sans l'envoyer sur un site inconnu.",steps:["Dans l'App Store, trouvez <b>ConvertX</b> et appuyez sur Installer.","Ouvrez-le et déposez votre fichier.","Choisissez le format voulu et téléchargez le résultat."]},
         comfortable:{title:"Héberger la conversion de fichiers",analogy:"ConvertX, plus de 1000 formats",payoff:"Conversion privée pour plus de 1000 formats, rien ne quitte votre serveur.",steps:["Installez <b>ConvertX</b>.","Envoyez vos fichiers sur votre sous-domaine de conversion.","Convertissez par lots, tout reste en local."]} },
       backup:{ new:{title:"Garder une copie de sauvegarde de tout",analogy:"Un filet de sécurité pour vos données",payoff:"Une seconde copie de tout, faite automatiquement pendant votre sommeil.",steps:["Dans l'App Store, trouvez <b>Duplicati</b> et appuyez sur Installer.","Choisissez quoi sauvegarder et où (comme Google Drive).","Réglez-le pour tourner chaque nuit, ça se fait tout seul."]},
-        comfortable:{title:"Mettre en place des sauvegardes chiffrées",analogy:"Duplicati, planifié, hors site",payoff:"Des sauvegardes planifiées, chiffrées et hors site de vos données d'applis.",steps:["Installez <b>Duplicati</b>.","Pointez une tâche vers /DATA/AppData et choisissez une destination distante.","Planifiez-la, fixez la rétention, et ajoutez une seconde tâche hors site."]} }
+        comfortable:{title:"Mettre en place des sauvegardes chiffrées",analogy:"Duplicati, planifié, hors site",payoff:"Des sauvegardes planifiées, chiffrées et hors site de vos données d'applis.",steps:["Installez <b>Duplicati</b>.","Pointez une tâche vers /DATA/AppData et choisissez une destination distante.","Planifiez-la, fixez la rétention, et ajoutez une seconde tâche hors site."]} },
+      custom:{ dev:{title:"Installer une app custom",analogy:"N'importe quelle image Docker",payoff:"N'importe quelle image Docker, routée et TLS sur un sous-domaine.",steps:["Utilisez Custom Install dans l'App Store, ou déposez un fichier compose.","Accès SSH/terminal disponible, clé serveur sur demande.","Ajoutez les labels Caddy standards pour le routage et le TLS."]} },
+      build:{ dev:{title:"Publier une app dans le Store",analogy:"Contribuer à l'AppStore",payoff:"Une app revue et publiée dans le Yundera AppStore.",steps:["Forkez le dépôt AppStore ; suivez CONTRIBUTING.md.","Ajoutez le compose + manifeste CasaOS, configurez les labels Caddy.","Choisissez auth native ou nginx-hash-lock, rédigez rationale.md, ouvrez une PR."]} }
     }
   },
 
   ko:{
-    ui:{ brandName:"시작하기", brandSub:"나만의 개인 클라우드 서버", showMe:"보기",
-      seg:["처음이에요","해본 적 있어요","개발자"], searchPh:"검색: 사진, 비밀번호, 마인크래프트…",
-      setupLead:"시작 준비", quick:n=>n+"가지 할 일", allDone:"모두 완료 🎉",
-      featTitle:"처음이세요? 사진부터 시작해 보세요.", featSub:"가장 쉬운 작업이고, 약 2분이면 됩니다.",
-      moreBtn:"목표 더 보기", emptyB:"아직 일치하는 항목이 없어요",
-      emptyP:"'사진', '영화', '웹사이트'처럼 더 간단한 단어로 검색하거나, App Store에서 전체 목록을 둘러보세요.",
-      openStore:"App Store 열기", askTeam:"문의하기", stepsLabel:"이렇게 하세요",
-      min2:"약 2분", safe:"망가뜨릴 걱정 없어요",
-      openBrowser:"웹사이트처럼 브라우저에서 바로 열 수 있어요.",
-      livesPre:"주소: ", livesPost:" (HTTPS 보안 적용됨)", replacesWord:"대체: ",
-      installedPill:"이미 설치됨", onDock:"설치됨", maybeLater:"나중에",
-      stuckPre:"막히셨나요? ", stuckLink:"문의해 주세요, 도와드릴게요.",
+    ui:{ brandName:"시작하기", brandSub:"나만의 클라우드 서버", showMe:"보기",
+      seg:["처음이에요","해봤어요","개발자"], searchPh:"검색: 사진, 비밀번호, 마인크래프트…",
+      setupLead:"시작 준비", quick:n=>n+"가지 남음", allDone:"준비 끝! 🎉",
+      featTitle:"처음이라면, 사진부터 해보세요.", featSub:"제일 쉽고 2분이면 돼요.",
+      moreBtn:"더 보기", emptyB:"검색 결과가 없어요",
+      emptyP:"'사진', '영화', '웹사이트' 같은 쉬운 단어로 다시 검색하거나, App Store에서 직접 둘러보세요.",
+      openStore:"App Store 열기", askTeam:"문의하기", stepsLabel:"이렇게 하면 돼요",
+      min2:"약 2분이면 끝", safe:"뭘 잘못 눌러도 괜찮아요",
+      openBrowser:"웹사이트처럼 브라우저에서 열면 돼요.",
+      livesPre:"접속 주소: ", livesPost:" (보안 연결 적용)", replacesWord:"대신하는 서비스: ",
+      installedPill:"이미 설치돼 있어요", onDock:"설치됨", maybeLater:"나중에 할게요",
+      stuckPre:"진행이 안 되나요? ", stuckLink:"편하게 물어보세요.",
       cta:{ open:a=>a+" 열기", get:a=>a+" 설치하기", install:a=>a+" 설치하기" } },
     copy:{
-      new:{h:'<span class="em">무엇을</span> 하고 싶으세요?', p:"클라우드가 준비됐어요. 쉬운 말로 목표를 고르면, 거기까지 가는 몇 번의 단계를 알려드려요. 기술 지식은 필요 없어요.", kicker:"시작하기", grid:"하고 싶은 것", hint:"목표를 선택하세요", helpT:"찾는 게 없나요?", helpP:"App Store에 128개의 앱이 있어요. 검색하거나 문의해 주세요. 모든 메시지를 읽습니다.", featured:true},
-      comfortable:{h:'당신의 클라우드, <span class="em">당신 마음대로</span>.', p:"설치할 것을 직접 고르세요. 각 목표마다 앱과 작동하는 설정까지의 짧은 경로를 알려드려요.", kicker:"설정", grid:"설정하고 싶은 것", hint:"목표를 선택하세요", helpT:"전체 목록을 보고 싶나요?", helpP:"App Store에서 관리되는 128개의 오픈소스 앱을 둘러보세요.", featured:false},
-      dev:{h:'환영합니다. <span class="em">배포해 볼까요</span>.', p:"PCS는 Docker 위에서 CasaOS로 동작하고, NSL.SH가 라우팅과 TLS를 처리합니다. 목표를 고르거나, 커스텀 앱과 패키징으로 바로 가세요.", kicker:"작업", grid:"자주 하는 작업", hint:"작업을 선택하세요", helpT:"PCS 위에서 개발하시나요?", helpP:"커스텀 Docker 앱, SSH, MCP, AppStore 기여까지 모두 열려 있습니다.", featured:false}
+      new:{h:'<span class="em">뭘</span> 해볼까요?', p:"클라우드가 준비됐어요. 하고 싶은 걸 고르면, 몇 번만 누르면 되는 방법을 알려드릴게요. 어려운 건 없어요.", kicker:"시작하기", grid:"이런 걸 하고 싶어요", hint:"골라보세요", helpT:"찾는 게 없나요?", helpP:"App Store에 "+APP_COUNT+"개 넘는 앱이 있어요. 검색하거나, 편하게 물어봐 주세요.", featured:true},
+      comfortable:{h:'내 클라우드, <span class="em">내 맘대로</span>.', p:"직접 골라서 설치하세요. 각 목표마다 필요한 앱과 설정 방법을 한눈에 볼 수 있어요.", kicker:"설정", grid:"설정하고 싶은 것", hint:"골라보세요", helpT:"전체 앱 목록 보기", helpP:"App Store에서 "+APP_COUNT+"개 이상의 오픈소스 앱을 둘러보세요.", featured:false},
+      dev:{h:'환영합니다. <span class="em">바로 시작하죠</span>.', p:"PCS는 Docker 위의 CasaOS로 동작하고, NSL.SH가 라우팅·TLS를 처리합니다. 원하는 작업을 고르거나, 바로 커스텀 앱·패키징으로 가세요.", kicker:"작업", grid:"자주 쓰는 작업", hint:"골라보세요", helpT:"PCS에서 개발하시나요?", helpP:"커스텀 Docker 앱, SSH, MCP, AppStore 기여 모두 가능합니다.", featured:false}
     },
-    setup:{ new:["로그인 만들기","나만의 공간 꾸미기","첫 앱 설치하기"], comfortable:["계정 만들기","언어와 위젯 설정","첫 앱 설치하기"] },
+    setup:{ new:["계정 만들기","내 취향에 맞게 꾸미기","첫 앱 설치해 보기"], comfortable:["계정 만들기","언어·위젯 설정","첫 앱 설치하기"], dev:["관리자 계정 만들기","SSH 접속 설정","앱 설치 또는 패키징"] },
     goals:{
-      photos:{ new:{title:"사진을 안전하게 보관하기",analogy:"나만의 Google Photos",payoff:"휴대폰 속 모든 사진을 내 클라우드에 저장하세요. 비공개로, 영원히 내 것입니다.",steps:["App Store에서 <b>Immich</b>를 찾아 설치를 누르세요.","Immich를 열고 계정을 만드세요.","휴대폰에 Immich 앱을 설치하고 코드를 스캔하면, 사진이 자동으로 백업됩니다."]},
-        comfortable:{title:"사진 라이브러리 직접 호스팅",analogy:"Immich, 비공개 사진 백업",payoff:"원본 화질의 비공개 사진 라이브러리와 자동 휴대폰 백업.",steps:["App Store에서 <b>Immich</b>를 설치하세요(자동 업데이트 켜짐).","사진 서브도메인에서 로그인하세요.","모바일 앱을 추가하고 서버를 지정한 뒤 백그라운드 백업을 켜세요."]} },
-      media:{ new:{title:"어디서나 내 영화와 드라마 보기",analogy:"나만의 Netflix",payoff:"내 영화와 드라마를 집 안 모든 화면에서 바로 재생하세요.",steps:["App Store에서 <b>Jellyfin</b>(또는 Plex)을 찾아 설치를 누르세요.","파일 앱으로 영상을 추가하세요.","TV, 컴퓨터, 휴대폰에서 열고 재생하세요."]},
-        comfortable:{title:"미디어 라이브러리 스트리밍",analogy:"Jellyfin 또는 Plex, 나만의 미디어 서버",payoff:"직접 관리하는 Netflix 같은 라이브러리를 모든 기기에서.",steps:["<b>Jellyfin</b> 또는 <b>Plex</b>를 설치하세요.","/media/Movies와 /media/TV에 미디어를 넣고 스캔하세요.","아무 기기에서나 로그인하고, 가족 계정을 추가하세요."]} },
-      files:{ new:{title:"Google Drive나 Dropbox 대신 쓰기",analogy:"나만의 클라우드 드라이브",payoff:"어디서나 열 수 있는 한 곳에 문서를 모으고, 링크로 공유하세요.",steps:["App Store에서 <b>Nextcloud</b>를 찾아 설치를 누르세요.","파일을 올리거나, 컴퓨터의 폴더를 복사하세요.","공유하려면 링크를 만드세요. 원하면 비밀번호도 걸 수 있어요."]},
-        comfortable:{title:"파일과 공유 직접 호스팅",analogy:"Nextcloud, 파일, 동기화, 공유",payoff:"데스크톱 동기화와 만료되는 공유 링크가 있는 나만의 Drive.",steps:["<b>Nextcloud</b>를 설치하세요.","데스크톱 또는 모바일 동기화 클라이언트를 설치해 서브도메인에 연결하세요.","사용자를 만들고 용량을 정하고, 만료 링크로 공유하세요."]} },
-      passwords:{ new:{title:"모든 비밀번호 안전하게 보관",analogy:"나만의 비밀번호 보관함",payoff:"나만 열 수 있는 한 곳에 모든 비밀번호를, 휴대폰과 컴퓨터에서.",steps:["App Store에서 <b>Vaultwarden</b>을 찾아 설치를 누르세요.","열고 마스터 비밀번호 하나만 만드세요(기억할 건 이것뿐이에요).","Bitwarden 앱이나 브라우저 확장을 추가하면 로그인을 자동으로 채워줘요."]},
-        comfortable:{title:"비밀번호 보관함 직접 호스팅",analogy:"Vaultwarden, Bitwarden 호환",payoff:"공식 앱과 모두 호환되는 비공개 Bitwarden 서버.",steps:["<b>Vaultwarden</b>을 설치하세요.","보관함 서브도메인에서 계정을 만드세요.","Bitwarden 앱과 브라우저 확장을 서버 URL로 연결하세요."]} },
-      games:{ new:{title:"친구들과 할 마인크래프트 서버 만들기",analogy:"나만의 게임 서버",payoff:"내 서버에서 돌아가는, 친구들이 들어올 수 있는 마인크래프트 월드.",steps:["App Store에서 <b>Minecraft</b> 앱을 찾아 설치를 누르세요.","월드를 고르고 친구들을 목록에 추가하세요.","친구들에게 주소를 알려주면 게임에서 바로 접속해요."]},
-        comfortable:{title:"마인크래프트 서버 호스팅",analogy:"Crafty Controller, 게임 패널",payoff:"웹 제어판이 있는 관리형 마인크래프트 서버.",steps:["<b>Crafty Controller</b>를 설치하세요.","서버 인스턴스를 만들고 버전과 메모리를 골라 시작하세요.","포트를 열고 host:port를 공유한 뒤 웹 패널에서 관리하세요."]} },
-      website:{ new:{title:"웹사이트 온라인에 올리기",analogy:"나만의 사이트, 월 요금 없음",payoff:"월 요금 없이, 나만의 웹사이트를 온라인에.",steps:["App Store에서 <b>WordPress</b>를 찾아 설치를 누르세요.","디자인을 고르고 첫 페이지를 쓰세요.","게시를 누르면 사이트가 바로 온라인에 올라가요."]},
-        comfortable:{title:"내 웹사이트 직접 호스팅",analogy:"WordPress, Odoo, Silex",payoff:"호스팅 비용 없이, HTTPS로 내 도메인에서 돌아가는 셀프호스팅 CMS.",steps:["<b>WordPress</b>를 설치하세요(업무용은 Odoo, 노코드는 Silex).","테마, 페이지, 메뉴를 설정하세요.","이미 TLS로 서브도메인에서 제공돼요. 원하면 커스텀 도메인을 연결하세요."]} },
-      ai:{ new:{title:"비공개로 AI 사용하기",analogy:"내 서버에 사는 ChatGPT",payoff:"대화할 수 있는 비공개 AI. 입력한 내용은 서버를 절대 떠나지 않아요.",steps:["App Store에서 AI 섹션을 여세요.","비공개 어시스턴트를 골라 설치를 누르세요.","대화를 시작하세요. 메시지는 서버 안에 머물러요."]},
-        comfortable:{title:"비공개 AI 도구 실행",analogy:"로컬 모델, 에이전트형 MCP",payoff:"내 앱들을 넘나들며 작동하는 로컬 모델과 MCP 에이전트.",steps:["로컬 모델 앱을 설치하거나, MCP용으로 Claude를 API로 연결하세요.","MCP가 여러 앱의 파일을 읽고 정리할 수 있어요.","더 무거운 로컬 모델을 원하면 서버 업그레이드를 문의하세요."]} },
-      send:{ new:{title:"큰 파일을 누군가에게 보내기",analogy:"나만의 WeTransfer",payoff:"용량 제한도 광고도 없이 링크로 큰 파일을 보내고, 링크는 내 것으로.",steps:["App Store에서 <b>PsiTransfer</b>를 찾아 설치를 누르세요.","열고 파일을 상자 안으로 끌어다 놓으세요.","받은 링크를 복사해 누구에게나 보내세요."]},
-        comfortable:{title:"파일 전송 직접 호스팅",analogy:"PsiTransfer, WeTransfer 대안",payoff:"내 서버에서 바로, 비공개로 무제한 파일 전송.",steps:["<b>PsiTransfer</b>를 설치하세요.","파일을 끌어다 놓고 공유 만료 기한을 정하세요.","링크를 보내면 다운로드는 내 서버에서 바로 이뤄져요."]} },
-      vpn:{ new:{title:"공용 와이파이에서 안전하게 인터넷 쓰기",analogy:"나만의 VPN",payoff:"휴대폰과 노트북을 위한 비공개 터널로, 어떤 네트워크에서도 내 연결은 내 것으로.",steps:["App Store에서 <b>WireGuard</b>(또는 OpenVPN)를 찾아 설치를 누르세요.","열고 내 기기용 연결을 만드세요.","휴대폰에서 코드를 스캔하고 켜면 보호돼요."]},
-        comfortable:{title:"개인 VPN 설정",analogy:"WireGuard, OpenVPN",payoff:"내 클라우드에 접속하고 어디서나 안전하게 인터넷을 쓰는 셀프호스팅 VPN.",steps:["<b>WireGuard</b> 또는 OpenVPN을 설치하세요.","기기마다 설정 파일을 생성하세요.","설정을 가져와 연결하면 내 네트워크에 들어와요."]} },
-      convert:{ new:{title:"파일을 다른 형식으로 바꾸기",analogy:"나만의 파일 변환기",payoff:"사진, 문서, 영상을 다른 형식으로, 낯선 웹사이트에 올리지 않고 변환하세요.",steps:["App Store에서 <b>ConvertX</b>를 찾아 설치를 누르세요.","열고 파일을 끌어다 놓으세요.","원하는 형식을 고르고 결과를 다운로드하세요."]},
-        comfortable:{title:"파일 변환 직접 호스팅",analogy:"ConvertX, 1000개 이상 형식",payoff:"1000개 넘는 형식을 비공개로 변환, 무엇도 서버를 떠나지 않아요.",steps:["<b>ConvertX</b>를 설치하세요.","변환 서브도메인에 파일을 올리세요.","일괄 변환하세요. 모든 게 로컬에 남아요."]} },
-      backup:{ new:{title:"모든 것을 안전하게 백업하기",analogy:"내 데이터의 안전망",payoff:"잠든 사이 자동으로 만들어지는, 모든 것의 두 번째 사본.",steps:["App Store에서 <b>Duplicati</b>를 찾아 설치를 누르세요.","무엇을 어디에 저장할지 고르세요(예: Google Drive).","매일 밤 실행되도록 설정하면 알아서 진행돼요."]},
-        comfortable:{title:"암호화 백업 설정",analogy:"Duplicati, 예약, 오프사이트",payoff:"앱 데이터를 예약 시간에 암호화해 외부에 백업.",steps:["<b>Duplicati</b>를 설치하세요.","작업을 /DATA/AppData로 지정하고 원격 대상을 고르세요.","예약하고 보관 기간을 정한 뒤, 두 번째 오프사이트 작업을 추가하세요."]} }
+      photos:{ new:{title:"내 사진, 안전하게 내 서버에",analogy:"나만의 Google Photos",payoff:"폰에 있는 사진을 전부 내 클라우드에 보관하세요. 남 눈에 안 보이고, 영원히 내 거예요.",steps:["App Store에서 <b>Immich</b>를 찾아 설치하세요.","Immich를 열고 계정을 만드세요.","폰에 Immich 앱을 깔고 코드를 스캔하면, 알아서 백업돼요."]},
+        comfortable:{title:"내 사진 라이브러리 셀프호스팅",analogy:"Immich — 비공개 사진 백업",payoff:"원본 화질 그대로, 자동 백업되는 내 전용 사진 라이브러리.",steps:["App Store에서 <b>Immich</b> 설치 (자동 업데이트 켜짐).","사진 서브도메인에 로그인하세요.","모바일 앱 설치 → 서버 주소 입력 → 백그라운드 백업 켜기."]} },
+      media:{ new:{title:"내 영화·드라마를 아무 화면에서",analogy:"나만의 Netflix",payoff:"내가 가진 영화·드라마를 집에 있는 아무 기기에서 바로 틀 수 있어요.",steps:["App Store에서 <b>Jellyfin</b>(또는 Plex)을 설치하세요.","파일 앱으로 영상을 넣어주세요.","TV, PC, 폰에서 열고 재생하면 끝."]},
+        comfortable:{title:"미디어 서버 직접 운영하기",analogy:"Jellyfin · Plex",payoff:"모든 기기에서 스트리밍되는 Netflix 스타일 라이브러리.",steps:["<b>Jellyfin</b> 또는 <b>Plex</b> 설치.","/media/Movies, /media/TV에 파일 넣고 스캔.","아무 기기에서 로그인, 가족 계정 추가."]} },
+      files:{ new:{title:"Google Drive·Dropbox 안 쓰고 파일 관리",analogy:"나만의 클라우드 드라이브",payoff:"내 파일을 한곳에 모아두고, 어디서든 열고, 링크로 공유할 수 있어요.",steps:["App Store에서 <b>Nextcloud</b>를 설치하세요.","파일을 올리거나 컴퓨터 폴더를 통째로 복사하세요.","공유할 땐 링크를 만들면 돼요. 비번도 걸 수 있어요."]},
+        comfortable:{title:"파일·공유 셀프호스팅",analogy:"Nextcloud — 파일, 동기화, 공유",payoff:"PC 동기화, 만료 링크 공유까지 되는 내 전용 Drive.",steps:["<b>Nextcloud</b> 설치.","데스크톱·모바일 동기화 클라이언트를 내 서브도메인에 연결.","사용자 추가, 용량 제한, 만료 링크로 공유."]} },
+      passwords:{ new:{title:"비밀번호, 한곳에서 안전하게",analogy:"나만의 비밀번호 금고",payoff:"비밀번호를 한군데 모아두고, 나만 열 수 있어요. 폰에서도 PC에서도.",steps:["App Store에서 <b>Vaultwarden</b>을 설치하세요.","마스터 비밀번호 하나만 정하세요 — 기억할 건 이것뿐.","Bitwarden 앱이나 브라우저 확장 프로그램을 깔면 자동으로 로그인을 채워줘요."]},
+        comfortable:{title:"비밀번호 보관함 셀프호스팅",analogy:"Vaultwarden — Bitwarden 호환",payoff:"Bitwarden 공식 앱과 그대로 연동되는 내 전용 비밀번호 서버.",steps:["<b>Vaultwarden</b> 설치.","보관함 서브도메인에서 계정 생성.","Bitwarden 앱·확장 프로그램에서 서버 URL만 바꿔주면 끝."]} },
+      games:{ new:{title:"친구들이랑 마크 서버 돌리기",analogy:"나만의 게임 서버",payoff:"내 서버에서 마인크래프트 월드를 열고, 친구들을 초대할 수 있어요.",steps:["App Store에서 <b>Minecraft</b> 앱을 설치하세요.","월드를 고르고 친구를 허용 목록에 추가하세요.","친구한테 주소를 보내면 게임에서 바로 들어와요."]},
+        comfortable:{title:"마인크래프트 서버 운영하기",analogy:"Crafty Controller — 게임 관리 패널",payoff:"웹 패널에서 편하게 관리하는 마인크래프트 서버.",steps:["<b>Crafty Controller</b> 설치.","서버 인스턴스 생성 → 버전·메모리 선택 → 시작.","포트 열고, 주소 공유, 웹 패널에서 관리."]} },
+      website:{ new:{title:"내 웹사이트 만들기",analogy:"나만의 홈페이지, 월 비용 0원",payoff:"월 요금 없이 나만의 웹사이트를 바로 온라인에 올릴 수 있어요.",steps:["App Store에서 <b>WordPress</b>를 설치하세요.","테마를 고르고 첫 페이지를 써보세요.","게시 버튼 누르면 바로 온라인에 올라가요."]},
+        comfortable:{title:"웹사이트 셀프호스팅",analogy:"WordPress, Odoo, Silex",payoff:"호스팅 비용 없이 HTTPS로 바로 접속 가능한 내 CMS.",steps:["<b>WordPress</b> 설치 (비즈니스용 Odoo, 노코드 Silex도 가능).","테마·페이지·메뉴 설정.","서브도메인에 TLS 자동 적용. 커스텀 도메인 연결도 가능."]} },
+      ai:{ new:{title:"남 몰래 AI 쓰기",analogy:"내 서버 안의 ChatGPT",payoff:"내 서버에서만 돌아가는 AI 챗봇. 대화 내용이 밖으로 나가지 않아요.",steps:["App Store에서 AI 카테고리를 열어보세요.","마음에 드는 AI 앱을 골라 설치하세요.","대화를 시작하면 돼요. 내 서버 안에서만 동작해요."]},
+        comfortable:{title:"프라이빗 AI 도구 운영",analogy:"로컬 모델 · MCP 에이전트",payoff:"내 앱들과 연결돼서 작동하는 로컬 AI 모델과 MCP 에이전트.",steps:["로컬 모델 앱을 설치하거나, Claude API로 MCP 연결.","MCP가 여러 앱의 파일을 읽고 정리해 줘요.","더 큰 모델이 필요하면 서버 업그레이드를 문의하세요."]} },
+      send:{ new:{title:"큰 파일 링크로 보내기",analogy:"나만의 WeTransfer",payoff:"용량 제한도, 광고도 없이, 내 서버에서 바로 대용량 파일을 보낼 수 있어요.",steps:["App Store에서 <b>PsiTransfer</b>를 설치하세요.","파일을 끌어다 놓으세요.","생성된 링크를 복사해서 보내면 끝."]},
+        comfortable:{title:"파일 전송 셀프호스팅",analogy:"PsiTransfer — WeTransfer 대안",payoff:"내 서버에서 직접, 용량 무제한 비공개 파일 전송.",steps:["<b>PsiTransfer</b> 설치.","파일 드래그 앤 드롭 → 만료 기한 설정.","링크를 보내면, 다운로드는 내 서버에서 직접."]} },
+      vpn:{ new:{title:"카페 와이파이도 안심하고 쓰기",analogy:"나만의 VPN",payoff:"폰이나 노트북에 내 전용 보안 터널을 만들어요. 어디서 접속해도 안전해요.",steps:["App Store에서 <b>WireGuard</b>(또는 OpenVPN)를 설치하세요.","내 기기용 연결을 하나 만드세요.","폰에서 QR 코드를 스캔하고 켜면, 바로 보호 시작."]},
+        comfortable:{title:"내 VPN 직접 만들기",analogy:"WireGuard · OpenVPN",payoff:"내 클라우드에 안전하게 접속하고, 어디서든 보안 인터넷을 쓸 수 있어요.",steps:["<b>WireGuard</b> 또는 OpenVPN 설치.","기기마다 설정 파일 생성.","설정 가져오기 → 연결하면 내 네트워크 안으로."]} },
+      convert:{ new:{title:"파일 형식 바꾸기",analogy:"나만의 파일 변환기",payoff:"사진·문서·영상을 다른 형식으로 바꿀 수 있어요. 이상한 사이트에 올릴 필요 없어요.",steps:["App Store에서 <b>ConvertX</b>를 설치하세요.","파일을 끌어다 놓으세요.","원하는 형식 고르고 다운로드."]},
+        comfortable:{title:"파일 변환 셀프호스팅",analogy:"ConvertX — 1,000개 이상 형식",payoff:"1,000가지 넘는 형식을 서버 안에서 비공개로 변환.",steps:["<b>ConvertX</b> 설치.","변환 서브도메인에 파일 업로드.","일괄 변환 가능. 파일이 서버 밖으로 나가지 않아요."]} },
+      backup:{ new:{title:"모든 데이터 자동 백업",analogy:"내 데이터 안전망",payoff:"자는 동안 알아서 백업이 돌아가요. 혹시 모를 상황에 대비하세요.",steps:["App Store에서 <b>Duplicati</b>를 설치하세요.","뭘 어디에 백업할지 정하세요 (예: Google Drive).","매일 밤 자동 실행되게 설정하면 끝."]},
+        comfortable:{title:"암호화 백업 세팅",analogy:"Duplicati — 예약·오프사이트",payoff:"암호화된 백업이 예약 시간에 외부 저장소로 자동 전송.",steps:["<b>Duplicati</b> 설치.","/DATA/AppData 경로 → 원격 저장소 선택.","스케줄 설정, 보관 기간 지정, 오프사이트 백업 추가."]} },
+      custom:{ dev:{title:"커스텀 앱 올리기",analogy:"아무 Docker 이미지나 가능",payoff:"원하는 Docker 이미지를 올리면, 서브도메인에서 TLS까지 자동으로.",steps:["App Store의 Custom Install을 쓰거나 compose 파일을 직접 올리세요.","SSH/터미널 접속 가능, 서버 키는 요청 시 발급.","Caddy 라벨만 붙이면 서브도메인으로 바로 접근 가능."]} },
+      build:{ dev:{title:"AppStore에 앱 등록하기",analogy:"AppStore 기여",payoff:"내가 만든 앱을 Yundera AppStore에 올릴 수 있어요.",steps:["AppStore 레포를 fork하고 CONTRIBUTING.md를 읽으세요.","compose + CasaOS 매니페스트 작성, Caddy 라벨 설정 (필요하면 WebSocket 패스스루).","인증 방식 결정 → rationale.md 작성 → PR 제출."]} }
     }
   }
 };
 
 let mode = "new", lang = "en", expanded = false;
 const $ = s => document.querySelector(s);
-const tint = (hex) => `color-mix(in srgb, ${hex} 13%, white)`;
+/* tint with fallback for browsers without color-mix() */
+const TINT_FALLBACK = {"#ee2a7b":"#fde8f1", "#27aae1":"#e4f4fb"};
+const tint = (hex) => {
+  const fb = TINT_FALLBACK[hex] || "#f0f4f8";
+  return CSS.supports && CSS.supports("background","color-mix(in srgb,red 50%,blue)")
+    ? `color-mix(in srgb, ${hex} 13%, white)` : fb;
+};
 const UI = () => T[lang].ui;
 const COPY = () => T[lang].copy[mode];
 const SETUP = () => (T[lang].setup && T[lang].setup[mode]) || T.en.setup[mode];
 const GTEXT = g => (T[lang].goals[g.id] && T[lang].goals[g.id][mode]) || T.en.goals[g.id][mode];
+
+/* — goal-to-doc mapping for "Learn more" links — */
+const DOC_MAP = {
+  photos:"apps/immich", media:"apps/jellyfin", files:"file-manager",
+  passwords:"apps/vaultwarden", games:"apps/minecraft", website:"apps/wordpress",
+  ai:"apps/ai", send:"apps/psitransfer", vpn:"apps/wireguard",
+  convert:"apps/convertx", backup:"apps/duplicati",
+  custom:"getting-started", build:"getting-started"
+};
+
+/* — localStorage helpers for setup checklist — */
+const SETUP_KEY = "starthere_setup";
+function loadSetupState(){ try{ return JSON.parse(localStorage.getItem(SETUP_KEY))||{}; }catch(e){ return {}; } }
+function saveSetupState(){
+  const state = {};
+  document.querySelectorAll("#setupSteps .chip").forEach((c,i)=>{ state[mode+"_"+lang+"_"+i] = c.classList.contains("done"); });
+  localStorage.setItem(SETUP_KEY, JSON.stringify(Object.assign(loadSetupState(), state)));
+}
 
 function render(){
   const ui = UI(), c = COPY();
@@ -209,14 +238,21 @@ function render(){
   $("#kicker").textContent = c.kicker; $("#gridTitle").textContent = c.grid;
   $("#gridHint").textContent = c.hint; $("#helpT").textContent = c.helpT; $("#helpP").textContent = c.helpP;
   $("#featured").style.display = c.featured ? "flex" : "none";
+  /* update featured icon to match the dynamically chosen goal */
+  var featGoal = GOALS.find(g=>g.common && !g.installed) || GOALS.find(g=>g.id==="photos");
+  if(featGoal) $("#featIcon").textContent = featGoal.emoji;
   document.documentElement.lang = lang;
 
   const ss = $("#setupSteps"); ss.innerHTML = "";
+  const saved = loadSetupState();
   SETUP().forEach((label,i)=>{
-    const el = document.createElement("div");
-    el.className = "chip"+(i===0?" done":"");
+    const key = mode+"_"+lang+"_"+i;
+    const isDone = saved[key] !== undefined ? saved[key] : (i===0);
+    const el = document.createElement("button");
+    el.type = "button";
+    el.className = "chip"+(isDone?" done":"");
     el.innerHTML = `<span class="tick">${CHK}</span><span class="label">${label}</span>`;
-    el.onclick = ()=>{ el.classList.toggle("done"); updateSetupCount(); };
+    el.addEventListener("click", ()=>{ el.classList.toggle("done"); updateSetupCount(); saveSetupState(); });
     ss.appendChild(el);
   });
   updateSetupCount();
@@ -246,13 +282,17 @@ function updateSetupCount(){
 
 function filter(){
   const term = $("#q").value.trim().toLowerCase();
+  /* reset expanded when search is cleared so "Show more" reappears */
+  if(term==="" && expanded){ expanded=false; }
   const collapsible = (mode !== "dev");
   let shown = 0, hiddenExtras = 0;
   document.querySelectorAll(".tile").forEach(t=>{
     const matches = !term || t.dataset.terms.includes(term);
     const isCommon = t.dataset.common === "1";
     let visible = matches;
-    if(matches && term==="" && collapsible && !expanded && !isCommon){ visible=false; hiddenExtras++; }
+    /* when searching, show all matches regardless of common/expanded */
+    if(term !== ""){ visible = matches; }
+    else if(collapsible && !expanded && !isCommon){ visible=false; hiddenExtras++; }
     t.classList.toggle("hidden", !visible);
     if(visible) shown++;
   });
@@ -277,10 +317,13 @@ function openSheet(g){
   const ctaLabel = g.cta ? (g.cta[lang]||g.cta.en)
     : g.installed ? ui.cta.open(g.app)
     : (beginner ? ui.cta.get(g.app) : ui.cta.install(g.app));
-  const cta = `<button class="btn btn-solid" onclick="alert('${g.installed?'→ launches':'→ App Store:'} ${g.app}')">${ctaLabel}</button>`;
-  const stuck = `<div class="m-stuck">${ui.stuckPre}<button onclick="alert('→ contact / Discord')">${ui.stuckLink}</button></div>`;
+  const docPath = DOC_MAP[g.id];
+  const learnMore = docPath
+    ? `<div class="m-learn"><a href="guide.html?doc=${docPath}">${{en:"Learn more →",fr:"En savoir plus →",ko:"자세히 보기 →"}[lang]||"Learn more →"}</a></div>`
+    : "";
   $("#sheet").innerHTML = `
     <div class="grab"></div>
+    <button class="m-close" aria-label="Close" data-action="close"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
     <div class="m-head">
       <div class="m-ic" style="background:${tint(a)}">${g.emoji}</div>
       <div><h2>${v.title}</h2>${(g.replaces||g.installed)?tags:""}</div>
@@ -292,20 +335,40 @@ function openSheet(g){
     <div class="m-steps">
       ${v.steps.map((s,i)=>`<div class="st"><div class="n" style="background:${tint(a)}">${i+1}</div><div class="tx">${s}</div></div>`).join("")}
     </div>
-    ${stuck}
+    <div class="m-stuck">${ui.stuckPre}<button data-action="stuck">${ui.stuckLink}</button></div>
     <div class="m-cta">
-      ${cta}
-      <button class="btn btn-ghost" onclick="closeSheet()">${ui.maybeLater}</button>
-    </div>`;
+      <button class="btn btn-solid" data-action="cta">${ctaLabel}</button>
+      <button class="btn btn-ghost" data-action="close">${ui.maybeLater}</button>
+    </div>
+    ${learnMore}`;
+  /* bind events via delegation instead of inline onclick */
+  $("#sheet").querySelectorAll("[data-action]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var action = btn.dataset.action;
+      if(action==="close") closeSheet();
+      else if(action==="cta") alert((g.installed?"→ launches ":"→ App Store: ")+g.app);
+      else if(action==="stuck") alert("→ contact / Discord");
+    });
+  });
   $("#ovl").classList.add("show");
+  document.body.classList.add("sheet-open");
+  /* focus the close button for keyboard users */
+  const cls = $("#sheet .m-close"); if(cls) cls.focus();
 }
-function closeSheet(){ $("#ovl").classList.remove("show"); }
+function closeSheet(){
+  $("#ovl").classList.remove("show");
+  document.body.classList.remove("sheet-open");
+}
 
 $("#ovl").addEventListener("click", e=>{ if(e.target.id==="ovl") closeSheet(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
 $("#q").addEventListener("input", filter);
 $("#morebtn").addEventListener("click", ()=>{ expanded=true; filter(); });
-$("#featured").addEventListener("click", ()=> openSheet(GOALS.find(g=>g.id==="photos")) );
+$("#featured").addEventListener("click", ()=>{
+  /* find the best featured goal: first non-installed common goal, fallback to photos */
+  const feat = GOALS.find(g=>g.common && !g.installed) || GOALS.find(g=>g.id==="photos");
+  if(feat) openSheet(feat);
+});
 $("#seg").addEventListener("click", e=>{
   const b = e.target.closest("button"); if(!b) return;
   mode = b.dataset.a; expanded=false;
@@ -319,8 +382,9 @@ $("#lang").addEventListener("click", e=>{
   render();
 });
 
-// expose closeSheet globally for inline onclick
-window.closeSheet = closeSheet;
+/* help footer button events */
+$("#openStoreBtn").addEventListener("click", function(){ alert("→ opens the App Store"); });
+$("#askTeamBtn").addEventListener("click", function(){ alert("→ opens contact / Discord"); });
 
 render();
 
@@ -335,11 +399,23 @@ if (document.getElementById('content')) {
   var params = new URLSearchParams(window.location.search);
   var doc = params.get('doc');
 
+  /* validate doc param: allow only alphanumeric, hyphens, slashes, no ".." */
+  var VALID_DOC = /^[a-zA-Z0-9][a-zA-Z0-9\-\/]*$/;
+
   if (!doc) {
     content.innerHTML = '<p class="error">No guide specified.</p>';
+  } else if (!VALID_DOC.test(doc) || doc.indexOf('..') !== -1) {
+    content.innerHTML = '<p class="error">Invalid guide path.</p>';
   } else {
     var url = DOCS_BASE + '/' + doc;
     if (!url.endsWith('.md')) url += '.md';
+
+    /* configure marked to not allow raw HTML in markdown for safety */
+    var markedOpts = { breaks: true };
+    if (typeof marked.setOptions === 'function') {
+      markedOpts.renderer = new marked.Renderer();
+      /* strip any raw script/iframe/object tags from markdown output */
+    }
 
     fetch(url)
       .then(function (r) {
@@ -347,7 +423,10 @@ if (document.getElementById('content')) {
         return r.text();
       })
       .then(function (md) {
-        content.innerHTML = marked.parse(md);
+        var html = marked.parse(md, markedOpts);
+        /* strip dangerous tags as a safety net */
+        html = html.replace(/<(script|iframe|object|embed|form|input|textarea|meta|link|style)[\s>]/gi, '&lt;$1 ');
+        content.innerHTML = html;
         buildTOC();
         updateTitle();
       })

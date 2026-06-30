@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eef6fd">
+<meta name="description" content="Your starting point for PCS. Pick a goal, get there in 3 taps.">
+<meta property="og:title" content="Start Here — Your PCS">
+<meta property="og:description" content="Pick a goal in plain words and get a simple step-by-step guide for your Personal Cloud Server.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
 <title>Start Here — Your PCS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,8 +72,8 @@
     <div class="steps" id="setupSteps"></div>
   </div>
 
-  <div class="featured" id="featured" style="display:none">
-    <div class="fic">📸</div>
+  <div class="featured" id="featured" style="display:none" role="button" tabindex="0" aria-label="Featured goal">
+    <div class="fic" id="featIcon">📸</div>
     <div class="ft"><b id="featTitle"></b><p id="featSub"></p></div>
     <div class="arrow">→</div>
   </div>
@@ -77,15 +83,15 @@
     <span class="hint" id="gridHint"></span>
   </div>
 
-  <div class="grid" id="grid"></div>
+  <div class="grid" id="grid" aria-live="polite"></div>
   <div class="morewrap hide" id="morewrap"><button class="morebtn" id="morebtn"></button></div>
-  <div class="empty" id="empty"><b id="emptyB"></b><span id="emptyP"></span></div>
+  <div class="empty" id="empty" aria-live="polite"><b id="emptyB"></b><span id="emptyP"></span></div>
 
   <div class="help">
     <div class="t"><b id="helpT"></b><p id="helpP"></p></div>
     <div class="acts">
-      <button class="btn btn-ghost" id="openStoreBtn" onclick="alert('→ opens the App Store')"></button>
-      <button class="btn btn-solid" id="askTeamBtn" onclick="alert('→ opens contact / Discord')"></button>
+      <button class="btn btn-ghost" id="openStoreBtn"></button>
+      <button class="btn btn-solid" id="askTeamBtn"></button>
     </div>
   </div>
 </main>
