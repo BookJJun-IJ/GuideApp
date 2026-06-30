@@ -1,73 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Help — Your PCS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Here — Your PCS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header class="header">
-    <div class="header-content">
-      <h1 class="header-title">What do you want to do?</h1>
-      <p class="header-subtitle">Your cloud, explained simply.</p>
-      <div class="audience-toggle">
-        <span class="toggle-label">Show me</span>
-        <button class="toggle-btn active" data-level="beginner">First time</button>
-        <button class="toggle-btn" data-level="intermediate">I've done this</button>
-        <button class="toggle-btn" data-level="developer">Developer</button>
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <defs><linearGradient id="yg" x1="0" y1="0" x2="64" y2="0">
+            <stop offset="0" stop-color="#27aae1"/><stop offset="1" stop-color="#ee2a7b"/>
+          </linearGradient></defs>
+          <path d="M20 40c-7 0-12-4.5-12-11 0-6 4.6-10.4 10.7-10.8C21 12 26.6 8 33 8c8 0 14 5.6 14.6 13C53 21.6 57 26 57 31.5 57 37.6 52 42 45 42"
+            fill="#dcebf9" stroke="url(#yg)" stroke-width="3.4" stroke-linejoin="round"/>
+          <path d="M26 30l6 7m0 0 6-7m-6 7v10" stroke="#3d617f" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="50" r="3.2" fill="#3d617f"/>
+        </svg>
+        <div>
+          <div class="brand-name" id="brandName">Start Here</div>
+          <div class="brand-sub" id="brandSub">Your Personal Cloud Server</div>
+        </div>
+      </div>
+      <div class="hdr-right">
+        <div class="langpill" id="lang">
+          <button data-l="en" class="on">EN</button>
+          <button data-l="fr">FR</button>
+          <button data-l="ko">KO</button>
+        </div>
+        <div class="segwrap">
+          <span class="seglabel" id="showMeLabel">Show me</span>
+          <div class="seg" id="seg">
+            <button data-a="new" class="on" id="segNew">First time</button>
+            <button data-a="comfortable" id="segComf">I've done this</button>
+            <button data-a="dev" id="segDev">Developer</button>
+          </div>
+        </div>
       </div>
     </div>
-  </header>
 
-  <!-- First-time banner -->
-  <div class="first-time-banner" id="first-time-banner">
-    <span class="banner-icon">👋</span>
-    <span class="banner-text">First time? The easiest place to start is <strong>your photos</strong></span>
-    <button class="banner-btn" id="banner-cta">Show me →</button>
+    <div class="greet">
+      <h1 id="greetH"></h1>
+      <p id="greetP"></p>
+    </div>
+
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="q" autocomplete="off" aria-label="Search">
+    </div>
+
+    <hr class="rule">
+  </div>
+</header>
+
+<main class="wrap stage">
+  <div class="setup" id="setup">
+    <div class="lead"><b id="setupLead">Get set up</b><span id="setupCount"></span></div>
+    <div class="steps" id="setupSteps"></div>
   </div>
 
-  <main class="main">
-    <div class="search-bar">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-      <input type="text" id="search" placeholder="Search... (e.g. photos, movies, files)" autocomplete="off">
-    </div>
-
-    <div id="goals-container"></div>
-
-    <div class="show-more-wrap" id="show-more-wrap">
-      <button class="show-more-btn" id="show-more-btn">Show more goals</button>
-    </div>
-  </main>
-
-  <!-- Goal detail sheet (modal) -->
-  <div class="sheet-overlay hidden" id="sheet-overlay">
-    <div class="sheet" id="sheet">
-      <button class="sheet-close" id="sheet-close">&times;</button>
-      <div class="sheet-replaces" id="sheet-replaces"></div>
-      <h2 class="sheet-title" id="sheet-title"></h2>
-      <p class="sheet-reward" id="sheet-reward"></p>
-      <div class="sheet-badges">
-        <span class="badge" id="badge-time"></span>
-        <span class="badge badge-safe">you can't break anything</span>
-      </div>
-      <p class="sheet-access" id="sheet-access">You'll open it in your web browser, just like any website.</p>
-      <ol class="sheet-steps" id="sheet-steps"></ol>
-      <div class="sheet-footer">
-        <a class="sheet-btn" id="sheet-learn-more" href="#">Learn more →</a>
-      </div>
-    </div>
+  <div class="featured" id="featured" style="display:none">
+    <div class="fic">📸</div>
+    <div class="ft"><b id="featTitle"></b><p id="featSub"></p></div>
+    <div class="arrow">→</div>
   </div>
 
-  <footer class="footer">
-    <p>Yundera — A cloud that's actually yours.</p>
-  </footer>
+  <div class="section-h">
+    <div><div class="kicker" id="kicker"></div><h2 id="gridTitle"></h2></div>
+    <span class="hint" id="gridHint"></span>
+  </div>
 
-  <script src="js/app.js"></script>
+  <div class="grid" id="grid"></div>
+  <div class="morewrap hide" id="morewrap"><button class="morebtn" id="morebtn"></button></div>
+  <div class="empty" id="empty"><b id="emptyB"></b><span id="emptyP"></span></div>
+
+  <div class="help">
+    <div class="t"><b id="helpT"></b><p id="helpP"></p></div>
+    <div class="acts">
+      <button class="btn btn-ghost" id="openStoreBtn" onclick="alert('→ opens the App Store')"></button>
+      <button class="btn btn-solid" id="askTeamBtn" onclick="alert('→ opens contact / Discord')"></button>
+    </div>
+  </div>
+</main>
+
+<div class="ovl" id="ovl" role="dialog" aria-modal="true" aria-label="How to do this"><div class="sheet" id="sheet"></div></div>
+
+<script src="js/app.js"></script>
 </body>
 </html>
