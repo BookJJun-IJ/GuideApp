@@ -6,14 +6,14 @@
     { "id": "family", "emoji": "👨‍👩‍👧", "label": { "en": "Family", "fr": "Famille", "ko": "가족" } }
   ],
   "interest": [
-    { "id": "photos", "emoji": "📸", "label": { "en": "Photos & memories", "fr": "Photos & souvenirs", "ko": "사진 & 추억" } },
-    { "id": "media", "emoji": "🎬", "label": { "en": "Movies & media", "fr": "Films & médias", "ko": "영화 & 미디어" } },
-    { "id": "files", "emoji": "🗂️", "label": { "en": "Files & documents", "fr": "Fichiers & documents", "ko": "파일 & 문서" } },
-    { "id": "productivity", "emoji": "📊", "label": { "en": "Work & productivity", "fr": "Travail & productivité", "ko": "업무 & 생산성" } },
-    { "id": "privacy", "emoji": "🔐", "label": { "en": "Privacy & security", "fr": "Confidentialité & sécurité", "ko": "개인정보 & 보안" } },
-    { "id": "ai", "emoji": "🤖", "label": { "en": "AI assistants", "fr": "Assistants IA", "ko": "AI 어시스턴트" } },
-    { "id": "developer", "emoji": "⚙️", "label": { "en": "Developer tools", "fr": "Outils de dev", "ko": "개발자 도구" } },
-    { "id": "website", "emoji": "🌐", "label": { "en": "Website & blog", "fr": "Site & blog", "ko": "웹사이트 & 블로그" } },
-    { "id": "games", "emoji": "🎮", "label": { "en": "Games & fun", "fr": "Jeux & loisirs", "ko": "게임 & 재미" } }
+    { "id": "photos", "emoji": "📸", "audiences": ["personal", "family"], "label": { "en": "Photos & memories", "fr": "Photos & souvenirs", "ko": "사진 & 추억" } },
+    { "id": "media", "emoji": "🎬", "audiences": ["personal", "family"], "label": { "en": "Movies & media", "fr": "Films & médias", "ko": "영화 & 미디어" } },
+    { "id": "files", "emoji": "🗂️", "audiences": ["personal", "family", "business"], "label": { "en": "Files & documents", "fr": "Fichiers & documents", "ko": "파일 & 문서" } },
+    { "id": "productivity", "emoji": "📊", "audiences": ["personal", "family", "business"], "label": { "en": "Work & productivity", "fr": "Travail & productivité", "ko": "업무 & 생산성" } },
+    { "id": "privacy", "emoji": "🔐", "audiences": ["personal", "family", "business"], "label": { "en": "Privacy & security", "fr": "Confidentialité & sécurité", "ko": "개인정보 & 보안" } },
+    { "id": "ai", "emoji": "🤖", "audiences": ["personal", "business"], "label": { "en": "AI assistants", "fr": "Assistants IA", "ko": "AI 어시스턴트" } },
+    { "id": "developer", "emoji": "⚙️", "audiences": ["personal", "business"], "label": { "en": "Developer tools", "fr": "Outils de dev", "ko": "개발자 도구" } },
+    { "id": "website", "emoji": "🌐", "audiences": ["personal", "business"], "label": { "en": "Website & blog", "fr": "Site & blog", "ko": "웹사이트 & 블로그" } },
+    { "id": "games", "emoji": "🎮", "audiences": ["personal", "family"], "label": { "en": "Games & fun", "fr": "Jeux & loisirs", "ko": "게임 & 재미" } }
   ]
 }

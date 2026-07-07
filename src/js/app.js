@@ -14,6 +14,7 @@ if (LANGS.indexOf(lang) < 0) {
   lang = (navigator.language || 'en').slice(0, 2);
   if (LANGS.indexOf(lang) < 0) lang = 'en';
 }
+document.documentElement.lang = lang;
 function tr(o, fb) { return o ? (o[lang] || o.en || fb || '') : (fb || ''); }
 
 /* ---- inline SVG icons ---------------------------------------------- */
@@ -37,18 +38,20 @@ if (document.getElementById('wizard')) {
 function indexApp() {
   var $ = function (s) { return document.querySelector(s); };
   var STORE = 'guide.onboarding';
-  var cfg, tags, site, catalog;
+  var cfg, tags, site, catalog, tutorial, runtime;
   var answers = load();     // {audience, level, interests[], _audiencetags[]} | null
   var draft, step = 0, browseMode = false;
+  var tutIndex = 0, tutApp = null;
 
   Promise.all([
     fetchJSON('config/onboarding.json'),
     fetchJSON('config/tags.json'),
     fetchJSON('config/site.json'),
-    fetchJSON('catalog.json')
+    fetchJSON('catalog.json'),
+    fetchJSON('config/install-tutorial.json').catch(function () { return { slides: [], cta: {} }; }),
+    fetchJSON('config/runtime.json').catch(function () { return {}; })
   ]).then(function (r) {
-    cfg = r[0]; tags = r[1]; site = r[2]; catalog = r[3];
-    hydrateInterests();
+    cfg = r[0]; tags = r[1]; site = r[2]; catalog = r[3]; tutorial = r[4]; runtime = r[5];
     bindStatic();
     setLangButtons();
     if (answers) showResults(); else startWizard();
@@ -64,14 +67,17 @@ function indexApp() {
   }
   function ui(k) { return tr(cfg.ui[k]); }
 
-  /* interests question sources its options from the tags vocabulary */
-  function hydrateInterests() {
-    var q = qById('interests');
-    if (q && q.source === 'tags.interest' && !q.options) {
-      q.options = tags.interest.map(function (t) {
-        return { id: t.id, tags: [t.id], emoji: t.emoji, label: t.label };
-      });
+  /* Options for a question. For dynamic sources (tags.interest), resolved
+     each render so audience-scoped filtering can react to a Back-and-change. */
+  function optionsFor(q) {
+    if (q.options) return q.options;
+    if (q.source === 'tags.interest') {
+      var aud = draft && draft.audience;
+      return tags.interest
+        .filter(function (t) { return !t.audiences || !aud || t.audiences.indexOf(aud) >= 0; })
+        .map(function (t) { return { id: t.id, tags: [t.id], emoji: t.emoji, label: t.label }; });
     }
+    return [];
   }
   function qById(id) { return cfg.questions.filter(function (q) { return q.id === id; })[0]; }
 
@@ -101,7 +107,8 @@ function indexApp() {
     opts.className = 'wiz-opts' + (q.type === 'multi' ? ' multi' : '');
     opts.innerHTML = '';
     var cur = q.id === 'interests' ? draft.interests : draft[q.id];
-    q.options.forEach(function (o) {
+    var options = optionsFor(q);
+    options.forEach(function (o) {
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'wiz-opt';
@@ -130,7 +137,11 @@ function indexApp() {
       renderStep();
     } else {
       draft[q.id] = o.id;
-      if (q.id === 'audience') draft._audiencetags = o.tags || [o.id];
+      if (q.id === 'audience') {
+        draft._audiencetags = o.tags || [o.id];
+        var validIds = optionsFor(qById('interests')).map(function (x) { return x.id; });
+        draft.interests = draft.interests.filter(function (id) { return validIds.indexOf(id) >= 0; });
+      }
       renderStep();
       setTimeout(next, 190);          // auto-advance
     }
@@ -230,10 +241,11 @@ function indexApp() {
 
   function openSheet(a) {
     var sheet = $('#sheet');
+    sheet.className = 'sheet';
     sheet.innerHTML = '';
 
     sheet.appendChild(el('div', 'grab'));
-    var close = el('button', 'm-close'); close.setAttribute('aria-label', 'Close'); close.innerHTML = IC.x;
+    var close = el('button', 'm-close'); close.setAttribute('aria-label', ui('close')); close.innerHTML = IC.x;
     close.addEventListener('click', closeSheet);
     sheet.appendChild(close);
 
@@ -255,22 +267,24 @@ function indexApp() {
     if (desc) sheet.appendChild(el('div', 'm-desc', desc));
 
     var setup = a.setup || {};
-    if (setup.youtube || setup.blog) {
+    if (setup.youtube || setup.blog || a.docPath) {
       var links = el('div', 'm-setup');
       if (setup.youtube) links.appendChild(snLink('setup-link yt', ui('watch'), setup.youtube, IC.yt));
-      if (setup.blog) links.appendChild(snLink('setup-link', ui('read'), setup.blog, IC.doc));
+      if (a.docPath) links.appendChild(snLink('setup-link', ui('read'), 'guide.html?doc=' + encodeURIComponent(a.docPath), IC.doc));
+      else if (setup.blog) links.appendChild(snLink('setup-link', ui('read'), setup.blog, IC.doc));
       sheet.appendChild(links);
     }
 
     var cta = el('div', 'm-cta');
-    var install = document.createElement('a');
+    var install = document.createElement('button');
+    install.type = 'button';
     install.className = 'btn btn-solid';
     install.textContent = ui('install');
-    install.href = site.appStoreUrl || '#';
-    install.target = '_blank'; install.rel = 'noopener';
+    install.addEventListener('click', function () { openTutorial(a); });
     cta.appendChild(install);
     sheet.appendChild(cta);
 
+    $('#ovl').setAttribute('aria-label', ui('appDetails'));
     $('#ovl').classList.add('show');
     document.body.classList.add('sheet-open');
     close.focus();
@@ -278,6 +292,122 @@ function indexApp() {
   function closeSheet() {
     $('#ovl').classList.remove('show');
     document.body.classList.remove('sheet-open');
+  }
+
+  /* ---- install tutorial slider ----------------------------------- */
+  function renderBold(dest, text) {
+    var parts = String(text || '').split(/\*\*([^*]+)\*\*/);
+    parts.forEach(function (p, i) {
+      if (i % 2 === 1) {
+        var b = document.createElement('strong');
+        b.textContent = p;
+        dest.appendChild(b);
+      } else if (p) {
+        dest.appendChild(document.createTextNode(p));
+      }
+    });
+  }
+  function openTutorial(a) {
+    tutApp = a;
+    tutIndex = 0;
+    renderTutorial();
+    $('#ovl').setAttribute('aria-label', tr(a.title, a.id));
+    $('#ovl').classList.add('show');
+    document.body.classList.add('sheet-open');
+  }
+  function renderTutorial() {
+    var slides = (tutorial && tutorial.slides) || [];
+    var sheet = $('#sheet');
+    sheet.className = 'sheet tutorial';
+    sheet.innerHTML = '';
+
+    var top = el('div', 'tut-top');
+    var back = el('button', 'tut-back');
+    back.type = 'button';
+    back.setAttribute('aria-label', ui('back'));
+    back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="m15 18-6-6 6-6"/></svg>';
+    back.addEventListener('click', function () { openSheet(tutApp); });
+    top.appendChild(back);
+
+    var close = el('button', 'm-close');
+    close.type = 'button';
+    close.setAttribute('aria-label', ui('close'));
+    close.innerHTML = IC.x;
+    close.addEventListener('click', closeSheet);
+    top.appendChild(close);
+    sheet.appendChild(top);
+
+    if (slides.length === 0) {
+      sheet.appendChild(el('div', 'tut-empty', ui('tutorialEmpty') || 'Tutorial coming soon.'));
+      return;
+    }
+
+    var stage = el('div', 'tut-stage');
+    var slide = slides[tutIndex] || slides[0];
+    var img = document.createElement('img');
+    img.className = 'tut-img';
+    img.alt = '';
+    img.src = slide.image;
+    img.onerror = function () {
+      var ph = el('div', 'tut-ph');
+      ph.textContent = '📷';
+      img.replaceWith(ph);
+    };
+    stage.appendChild(img);
+    sheet.appendChild(stage);
+
+    var cap = el('div', 'tut-caption');
+    renderBold(cap, tr(slide.caption));
+    sheet.appendChild(cap);
+
+    var dots = el('div', 'tut-dots');
+    slides.forEach(function (_, i) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'tut-dot' + (i === tutIndex ? ' on' : '');
+      d.setAttribute('aria-label', String(i + 1));
+      d.addEventListener('click', function () { tutIndex = i; renderTutorial(); });
+      dots.appendChild(d);
+    });
+    sheet.appendChild(dots);
+
+    var nav = el('div', 'tut-nav');
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-ghost';
+    prev.textContent = ui('back');
+    prev.disabled = tutIndex === 0;
+    prev.addEventListener('click', function () { if (tutIndex > 0) { tutIndex--; renderTutorial(); } });
+    nav.appendChild(prev);
+
+    var isLast = tutIndex === slides.length - 1;
+    if (isLast) {
+      var casaosUrl = runtime && runtime.casaosUrl;
+      if (casaosUrl) {
+        var open = document.createElement('a');
+        open.className = 'btn btn-solid';
+        open.textContent = tr(tutorial.cta) || ui('install');
+        open.href = casaosUrl;
+        open.target = '_blank';
+        open.rel = 'noopener';
+        nav.appendChild(open);
+      } else {
+        var done = document.createElement('button');
+        done.type = 'button';
+        done.className = 'btn btn-solid';
+        done.textContent = ui('close');
+        done.addEventListener('click', closeSheet);
+        nav.appendChild(done);
+      }
+    } else {
+      var next = document.createElement('button');
+      next.type = 'button';
+      next.className = 'btn btn-solid';
+      next.textContent = ui('next');
+      next.addEventListener('click', function () { tutIndex++; renderTutorial(); });
+      nav.appendChild(next);
+    }
+    sheet.appendChild(nav);
   }
 
   /* ---- community --------------------------------------------------- */
@@ -329,6 +459,7 @@ function indexApp() {
     $('#lang').addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
       lang = b.dataset.l; localStorage.setItem('guide.lang', lang);
+      document.documentElement.lang = lang;
       setLangButtons(); closeSheet();
       if ($('#wizard').hidden) showResults(); else renderStep();
     });
@@ -368,8 +499,8 @@ if (document.getElementById('content')) {
       })
       .then(function (md) {
         var html = marked.parse(md, markedOpts);
-        html = html.replace(/<(script|iframe|object|embed|form|input|textarea|meta|link|style)[\s>]/gi, '&lt;$1 ');
-        content.innerHTML = html;
+        content.innerHTML = '';
+        sanitizeInto(html, content);
         buildTOC();
         updateTitle();
       })
@@ -387,14 +518,78 @@ if (document.getElementById('content')) {
       if (sidebar) sidebar.style.display = 'none';
       return;
     }
-    var html = '';
-    headings.forEach(function (h, i) {
-      var id = 'heading-' + i;
+    toc.textContent = '';
+    var seen = Object.create(null);
+    headings.forEach(function (h) {
+      var base = slugify(h.textContent) || 'section';
+      var id = base, n = 2;
+      while (seen[id]) { id = base + '-' + (n++); }
+      seen[id] = true;
       h.id = id;
-      var cls = h.tagName === 'H3' ? ' class="toc-h3"' : '';
-      html += '<a href="#' + id + '"' + cls + '>' + h.textContent + '</a>';
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      if (h.tagName === 'H3') a.className = 'toc-h3';
+      a.textContent = h.textContent;
+      toc.appendChild(a);
     });
-    toc.innerHTML = html;
+  }
+  var ALLOWED_TAGS = {
+    A:1, ABBR:1, B:1, BLOCKQUOTE:1, BR:1, CODE:1, DEL:1, DIV:1, EM:1,
+    H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, HR:1, I:1, IMG:1, KBD:1, LI:1,
+    OL:1, P:1, PRE:1, S:1, SPAN:1, STRONG:1, SUB:1, SUP:1,
+    TABLE:1, TBODY:1, TD:1, TFOOT:1, TH:1, THEAD:1, TR:1, UL:1
+  };
+  var ALLOWED_ATTRS = {
+    href:1, src:1, alt:1, title:1, colspan:1, rowspan:1, align:1,
+    'class':1, id:1, name:1, target:1, rel:1
+  };
+  var URL_ATTRS = { href:1, src:1 };
+  var DROP_TAGS = { SCRIPT:1, STYLE:1, IFRAME:1, OBJECT:1, EMBED:1, FORM:1, INPUT:1, TEXTAREA:1, META:1, LINK:1 };
+  function safeUrl(v) {
+    var s = String(v || '').trim();
+    if (!s) return '';
+    if (/^\s*(javascript|data|vbscript):/i.test(s)) return '';
+    return s;
+  }
+  function sanitizeInto(html, dest) {
+    var tpl = document.createElement('template');
+    tpl.innerHTML = html;
+    var frag = tpl.content;
+    var walker = document.createTreeWalker(frag, NodeFilter.SHOW_ELEMENT, null);
+    var toDrop = [], toRemove = [];
+    var el;
+    while ((el = walker.nextNode())) {
+      var tag = el.tagName;
+      if (DROP_TAGS[tag]) { toRemove.push(el); continue; }
+      if (!ALLOWED_TAGS[tag]) { toDrop.push(el); continue; }
+      for (var i = el.attributes.length - 1; i >= 0; i--) {
+        var a = el.attributes[i];
+        var n = a.name.toLowerCase();
+        if (n.indexOf('on') === 0 || !ALLOWED_ATTRS[n]) {
+          el.removeAttribute(a.name);
+        } else if (URL_ATTRS[n]) {
+          var clean = safeUrl(a.value);
+          if (!clean) el.removeAttribute(a.name);
+          else el.setAttribute(a.name, clean);
+        }
+      }
+      if (tag === 'A' && el.getAttribute('target') === '_blank' && !el.getAttribute('rel')) {
+        el.setAttribute('rel', 'noopener noreferrer');
+      }
+    }
+    toRemove.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
+    toDrop.forEach(function (n) {
+      var parent = n.parentNode; if (!parent) return;
+      while (n.firstChild) parent.insertBefore(n.firstChild, n);
+      parent.removeChild(n);
+    });
+    dest.appendChild(frag);
+  }
+  function slugify(s) {
+    return String(s).toLowerCase()
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
   }
 
   function updateTitle() {

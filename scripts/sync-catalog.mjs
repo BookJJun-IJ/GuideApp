@@ -27,6 +27,7 @@ const STORE = arg('store', './appstore');
 const OVERLAY = arg('overlay', 'config/apps-overlay.json');
 const TAGS = arg('tags', 'config/tags.json');
 const OUT = arg('out', 'public/catalog.json');
+const DOCS = arg('docs', 'docs');
 
 /* ---- helpers ----------------------------------------------------------- */
 const LOCALES = { en_us: 'en', fr_fr: 'fr', ko_kr: 'ko' };
@@ -58,6 +59,14 @@ const tagVocab = existsSync(TAGS) ? readJSON(TAGS) : { audience: [], interest: [
 const validTags = new Set(
   [...(tagVocab.audience || []), ...(tagVocab.interest || [])].map((t) => t.id)
 );
+
+const appDocs = new Set();
+const appsDocsDir = join(DOCS, 'apps');
+if (existsSync(appsDocsDir)) {
+  for (const f of readdirSync(appsDocsDir)) {
+    if (f.endsWith('.md')) appDocs.add(f.slice(0, -3).toLowerCase());
+  }
+}
 
 const catList = existsSync(join(STORE, 'category-list.json'))
   ? readJSON(join(STORE, 'category-list.json'))
@@ -114,6 +123,7 @@ for (const folder of readdirSync(appsDir).sort()) {
     author: x.author || null,
     developer: x.developer || null,
     setup: ov.setup || null,
+    docPath: appDocs.has(id) ? `apps/${id}` : null,
     recommended: recommendSet.has(id),
   });
 }
