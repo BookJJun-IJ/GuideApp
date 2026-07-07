@@ -1,0 +1,15 @@
+{
+  "_note": "Editorial overlay merged onto AppStore metadata at build time (keyed by store_app_id, lowercase). Adds: 'tags' (flat, from tags.json) and 'setup' links (blog/youtube) the store doesn't carry. Effective tags = store x-casaos.tags UNION these. Seed tags here until the live store carries them; migrate at your pace.",
+  "immich":       { "tags": ["photos", "personal", "family"], "setup": { "youtube": "", "blog": "" } },
+  "jellyfin":     { "tags": ["media", "personal", "family"], "setup": { "youtube": "", "blog": "" } },
+  "nextcloud":    { "tags": ["files", "productivity", "business", "personal"] },
+  "vaultwarden":  { "tags": ["privacy", "personal", "business"] },
+  "odoo":         { "tags": ["business", "productivity"] },
+  "n8n":          { "tags": ["developer", "productivity", "business"] },
+  "ollama":       { "tags": ["ai", "developer"] },
+  "psitransfer":  { "tags": ["files", "personal"] },
+  "duplicati":    { "tags": ["files", "privacy"] },
+  "crafty":       { "tags": ["games", "personal", "family"] },
+  "convertx":     { "tags": ["files", "personal"] },
+  "wgeasy":       { "tags": ["privacy", "personal"] }
+}

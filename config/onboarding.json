@@ -1,0 +1,59 @@
+{
+  "_note": "Onboarding wizard definition. Fully editable without touching code. Each question's options carry the flat tag(s) they match (see tags.json). 'level' maps to the existing new/comfortable/dev copy system rather than tags.",
+  "version": 1,
+  "questions": [
+    {
+      "id": "audience",
+      "type": "single",
+      "match": "tags",
+      "title": { "en": "Who is this cloud for?", "fr": "À qui est destiné ce cloud ?", "ko": "이 클라우드는 누구를 위한 것인가요?" },
+      "subtitle": { "en": "We'll tailor the apps we suggest.", "fr": "Nous adapterons les apps proposées.", "ko": "추천 앱을 맞춤 설정합니다." },
+      "options": [
+        { "id": "personal", "tags": ["personal"], "emoji": "🏠", "label": { "en": "Just me", "fr": "Moi seulement", "ko": "나만" } },
+        { "id": "family", "tags": ["family", "personal"], "emoji": "👨‍👩‍👧", "label": { "en": "My family", "fr": "Ma famille", "ko": "가족" } },
+        { "id": "business", "tags": ["business"], "emoji": "💼", "label": { "en": "My business", "fr": "Mon entreprise", "ko": "비즈니스" } }
+      ]
+    },
+    {
+      "id": "level",
+      "type": "single",
+      "match": "level",
+      "title": { "en": "How techie are you?", "fr": "Votre niveau technique ?", "ko": "기술 수준은?" },
+      "subtitle": { "en": "This changes how we word the steps.", "fr": "Cela adapte la formulation des étapes.", "ko": "설명 방식을 조정합니다." },
+      "options": [
+        { "id": "new", "emoji": "🌱", "label": { "en": "New to this", "fr": "Débutant", "ko": "처음이에요" } },
+        { "id": "comfortable", "emoji": "🧭", "label": { "en": "I'm comfortable", "fr": "À l'aise", "ko": "익숙해요" } },
+        { "id": "dev", "emoji": "⚡", "label": { "en": "Developer", "fr": "Développeur", "ko": "개발자" } }
+      ]
+    },
+    {
+      "id": "interests",
+      "type": "multi",
+      "match": "tags",
+      "source": "tags.interest",
+      "title": { "en": "What are you into?", "fr": "Qu'est-ce qui vous intéresse ?", "ko": "무엇에 관심 있나요?" },
+      "subtitle": { "en": "Pick a few — we'll suggest apps for each.", "fr": "Choisissez-en quelques-uns.", "ko": "몇 개 선택하세요." }
+    }
+  ],
+  "results": {
+    "browseAll": { "en": "Browse all apps →", "fr": "Voir toutes les apps →", "ko": "모든 앱 보기 →" },
+    "empty": { "en": "No matches yet — browse the full catalogue.", "fr": "Aucun résultat — voir le catalogue complet.", "ko": "결과 없음 — 전체 카탈로그를 확인하세요." }
+  },
+  "ui": {
+    "step": { "en": "Step", "fr": "Étape", "ko": "단계" },
+    "back": { "en": "Back", "fr": "Retour", "ko": "뒤로" },
+    "skip": { "en": "Skip", "fr": "Passer", "ko": "건너뛰기" },
+    "next": { "en": "Next", "fr": "Suivant", "ko": "다음" },
+    "done": { "en": "Show my apps", "fr": "Voir mes apps", "ko": "내 앱 보기" },
+    "redo": { "en": "Redo", "fr": "Recommencer", "ko": "다시" },
+    "resultsTitle": { "en": "Picked for you", "fr": "Choisi pour vous", "ko": "당신을 위한 추천" },
+    "resultsSub": { "en": "Apps that match what you're after. Tap one for the setup steps.", "fr": "Des apps adaptées à vos besoins. Touchez-en une pour les étapes.", "ko": "관심사에 맞는 앱입니다. 탭하여 설치 단계를 확인하세요." },
+    "recommended": { "en": "Recommended", "fr": "Recommandé", "ko": "추천" },
+    "searchPh": { "en": "Search all apps…", "fr": "Rechercher…", "ko": "앱 검색…" },
+    "install": { "en": "Get this app", "fr": "Installer", "ko": "설치하기" },
+    "watch": { "en": "Watch setup video", "fr": "Voir la vidéo", "ko": "설치 영상 보기" },
+    "read": { "en": "Read the guide", "fr": "Lire le guide", "ko": "가이드 읽기" },
+    "community": { "en": "Join the community", "fr": "Rejoindre la communauté", "ko": "커뮤니티 참여" },
+    "communitySub": { "en": "Questions? The team and other users are here to help.", "fr": "Des questions ? L'équipe et les autres utilisateurs sont là.", "ko": "궁금한 점이 있나요? 팀과 사용자들이 도와드립니다." }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "_note": "Site-wide config: community/social links and branding. Keys under 'community' render as buttons in the order discord, reddit, youtube, linkedin, github (only the ones present show).",
+  "community": {
+    "discord": "https://discord.gg/QJyuNDXuFa",
+    "reddit": "https://www.reddit.com/r/Yundera/",
+    "youtube": "https://www.youtube.com/@YunderaOfficial",
+    "linkedin": "https://www.linkedin.com/company/yundera",
+    "github": "https://github.com/Yundera"
+  },
+  "appStoreUrl": "https://github.com/Yundera/AppStore"
+}

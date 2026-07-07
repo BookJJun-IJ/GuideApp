@@ -1,0 +1,10 @@
+.git
+.github
+docker-compose.yml
+icon.svg
+*.md
+!docs/**/*.md
+README*
+node_modules
+appstore
+public/catalog.json

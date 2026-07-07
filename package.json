@@ -1,0 +1,14 @@
+{
+  "name": "guideapp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Yundera PCS Guide — onboarding + AppStore-sourced catalog",
+  "scripts": {
+    "sync": "node scripts/sync-catalog.mjs --store ./appstore --overlay config/apps-overlay.json --tags config/tags.json --out public/catalog.json",
+    "sync:clone": "rm -rf appstore && git clone --depth 1 https://github.com/Yundera/AppStore appstore && npm run sync"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

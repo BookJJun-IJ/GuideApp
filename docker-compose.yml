@@ -2,9 +2,8 @@ name: guide
 
 services:
   guide:
-    image: nginx:1.27-alpine
+    image: ghcr.io/yundera/guideapp:latest
     container_name: guide
-    user: "0:0"
     expose:
       - 80
     labels:
@@ -16,8 +15,6 @@ services:
       caddy_1.reverse_proxy: "{{upstreams 80}}"
       caddy_2: guide-${APP_PUBLIC_IP_DASH}.sslip.io
       caddy_2.reverse_proxy: "{{upstreams 80}}"
-    volumes:
-      - /DATA/AppData/$AppID/html/:/usr/share/nginx/html/:ro
     cpu_shares: 80
     deploy:
       resources:
@@ -62,11 +59,3 @@ x-casaos:
         No additional configuration is needed.
   index: /
   scheme: https
-  pre-install-cmd: |
-    mkdir -p /DATA/AppData/guide/html/css/ /DATA/AppData/guide/html/js/
-    REPO="https://raw.githubusercontent.com/Yundera/AppStore/main/Apps/Guide/src"
-    curl -fsSL "$REPO/index.html" -o /DATA/AppData/guide/html/index.html
-    curl -fsSL "$REPO/guide.html" -o /DATA/AppData/guide/html/guide.html
-    curl -fsSL "$REPO/css/style.css" -o /DATA/AppData/guide/html/css/style.css
-    curl -fsSL "$REPO/js/app.js" -o /DATA/AppData/guide/html/js/app.js
-    curl -fsSL "$REPO/js/marked.min.js" -o /DATA/AppData/guide/html/js/marked.min.js

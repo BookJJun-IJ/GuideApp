@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#eef6fd">
-<meta name="description" content="Your starting point for PCS. Pick a goal, get there in 3 taps.">
+<meta name="description" content="Your starting point for PCS. Answer a few questions, get the right apps.">
 <meta property="og:title" content="Start Here — Your PCS">
-<meta property="og:description" content="Pick a goal in plain words and get a simple step-by-step guide for your Personal Cloud Server.">
+<meta property="og:description" content="Answer a few questions and get a personalized set of apps for your Personal Cloud Server.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
 <title>Start Here — Your PCS</title>
@@ -31,8 +31,8 @@
           <circle cx="32" cy="50" r="3.2" fill="#3d617f"/>
         </svg>
         <div>
-          <div class="brand-name" id="brandName">Start Here</div>
-          <div class="brand-sub" id="brandSub">Your Personal Cloud Server</div>
+          <div class="brand-name">Start Here</div>
+          <div class="brand-sub">Your Personal Cloud Server</div>
         </div>
       </div>
       <div class="hdr-right">
@@ -41,62 +41,53 @@
           <button data-l="fr">FR</button>
           <button data-l="ko">KO</button>
         </div>
-        <div class="segwrap">
-          <span class="seglabel" id="showMeLabel">Show me</span>
-          <div class="seg" id="seg">
-            <button data-a="new" class="on" id="segNew">First time</button>
-            <button data-a="comfortable" id="segComf">I've done this</button>
-            <button data-a="dev" id="segDev">Developer</button>
-          </div>
-        </div>
+        <button class="redo-btn" id="redoBtn" hidden></button>
       </div>
     </div>
-
-    <div class="greet">
-      <h1 id="greetH"></h1>
-      <p id="greetP"></p>
-    </div>
-
-    <div class="search">
-      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <input id="q" autocomplete="off" aria-label="Search">
-    </div>
-
-    <hr class="rule">
   </div>
 </header>
 
-<main class="wrap stage">
-  <div class="setup" id="setup">
-    <div class="lead"><b id="setupLead">Get set up</b><span id="setupCount"></span></div>
-    <div class="steps" id="setupSteps"></div>
+<!-- ONBOARDING WIZARD (full-screen stepped) -->
+<section class="wizard" id="wizard" hidden aria-live="polite">
+  <div class="wiz-inner">
+    <div class="wiz-progress" id="wizProgress"></div>
+    <h1 class="wiz-q" id="wizTitle"></h1>
+    <p class="wiz-sub" id="wizSub"></p>
+    <div class="wiz-opts" id="wizOpts"></div>
+    <div class="wiz-nav">
+      <button class="btn btn-ghost" id="wizBack"></button>
+      <div class="wiz-nav-right">
+        <button class="linkbtn" id="wizSkip"></button>
+        <button class="btn btn-solid" id="wizNext" hidden></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<main class="wrap stage" id="results" hidden>
+  <div class="greet">
+    <h1 id="resTitle"></h1>
+    <p id="resSub"></p>
   </div>
 
-  <div class="featured" id="featured" style="display:none" role="button" tabindex="0" aria-label="Featured goal">
-    <div class="fic" id="featIcon">📸</div>
-    <div class="ft"><b id="featTitle"></b><p id="featSub"></p></div>
-    <div class="arrow">→</div>
-  </div>
-
-  <div class="section-h">
-    <div><div class="kicker" id="kicker"></div><h2 id="gridTitle"></h2></div>
-    <span class="hint" id="gridHint"></span>
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <input id="q" autocomplete="off" aria-label="Search">
   </div>
 
   <div class="grid" id="grid" aria-live="polite"></div>
-  <div class="morewrap hide" id="morewrap"><button class="morebtn" id="morebtn"></button></div>
-  <div class="empty" id="empty" aria-live="polite"><b id="emptyB"></b><span id="emptyP"></span></div>
+  <div class="empty" id="empty" aria-live="polite"></div>
+  <div class="morewrap" id="browseWrap"><button class="morebtn" id="browseBtn"></button></div>
 
-  <div class="help">
-    <div class="t"><b id="helpT"></b><p id="helpP"></p></div>
-    <div class="acts">
-      <button class="btn btn-ghost" id="openStoreBtn"></button>
-      <button class="btn btn-solid" id="askTeamBtn"></button>
-    </div>
+  <!-- COMMUNITY -->
+  <div class="community" id="community" hidden>
+    <div class="t"><b id="commT"></b><p id="commP"></p></div>
+    <div class="acts" id="commActs"></div>
   </div>
 </main>
 
-<div class="ovl" id="ovl" role="dialog" aria-modal="true" aria-label="How to do this"><div class="sheet" id="sheet"></div></div>
+<div class="ovl" id="ovl" role="dialog" aria-modal="true" aria-label="App details"><div class="sheet" id="sheet"></div></div>
 
 <script src="js/app.js"></script>
 </body>
