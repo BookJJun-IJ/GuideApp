@@ -38,20 +38,19 @@ if (document.getElementById('wizard')) {
 function indexApp() {
   var $ = function (s) { return document.querySelector(s); };
   var STORE = 'guide.onboarding';
-  var cfg, tags, site, catalog, tutorial, runtime;
+  var cfg, tags, site, catalog, firstSteps, runtime;
   var answers = load();     // {audience, level, interests[], _audiencetags[]} | null
   var draft, step = 0, browseMode = false;
-  var tutIndex = 0, tutApp = null;
 
   Promise.all([
     fetchJSON('config/onboarding.json'),
     fetchJSON('config/tags.json'),
     fetchJSON('config/site.json'),
     fetchJSON('catalog.json'),
-    fetchJSON('config/install-tutorial.json').catch(function () { return { slides: [], cta: {} }; }),
+    fetchJSON('config/first-steps.json').catch(function () { return {}; }),
     fetchJSON('config/runtime.json').catch(function () { return {}; })
   ]).then(function (r) {
-    cfg = r[0]; tags = r[1]; site = r[2]; catalog = r[3]; tutorial = r[4]; runtime = r[5];
+    cfg = r[0]; tags = r[1]; site = r[2]; catalog = r[3]; firstSteps = r[4]; runtime = r[5];
     bindStatic();
     setLangButtons();
     if (answers) showResults(); else startWizard();
@@ -275,12 +274,23 @@ function indexApp() {
       sheet.appendChild(links);
     }
 
+    // Maison can open the store on this app, but never installs from a link:
+    // the user clicks Install there. Without a dashboard URL the button says
+    // what it does: show how to install.
     var cta = el('div', 'm-cta');
-    var install = document.createElement('button');
-    install.type = 'button';
+    var store = storeUrl(a);
+    var install;
+    if (store) {
+      install = document.createElement('a');
+      install.href = store; install.target = '_blank'; install.rel = 'noopener';
+      install.textContent = ui('install');
+    } else {
+      install = document.createElement('button');
+      install.type = 'button';
+      install.textContent = ui('howTo');
+    }
     install.className = 'btn btn-solid';
-    install.textContent = ui('install');
-    install.addEventListener('click', function () { openTutorial(a); });
+    install.addEventListener('click', function () { markStarted(a); openAfter(a); });
     cta.appendChild(install);
     sheet.appendChild(cta);
 
@@ -294,7 +304,110 @@ function indexApp() {
     document.body.classList.remove('sheet-open');
   }
 
-  /* ---- install tutorial slider ----------------------------------- */
+  /* ---- after "Install": finish in Maison, open, first steps -------- */
+  function maisonUrl() { return ((runtime && runtime.maisonUrl) || '').replace(/\/$/, ''); }
+  // Maison matches the store folder name, case-sensitively (/store/Immich).
+  function storeUrl(a) { var m = maisonUrl(); return m && a.folder ? m + '/store/' + encodeURIComponent(a.folder) : ''; }
+  // /launch waits until the installed app answers, then opens it.
+  function launchUrl(a) { var m = maisonUrl(); return m && a.project ? m + '/launch?app=' + encodeURIComponent(a.project) : ''; }
+  function settingsUrl(a) { var m = maisonUrl(); return m && a.project ? m + '/?app=' + encodeURIComponent(a.project) + '&panel=settings' : ''; }
+  function fill(s, a) { return String(s || '').replace(/\{app\}/g, tr(a.title, a.id)); }
+
+  var STARTED = 'guide.started';
+  function started() { try { return JSON.parse(localStorage.getItem(STARTED)) || []; } catch (e) { return []; } }
+  function markStarted(a) {
+    var s = started();
+    if (s.indexOf(a.id) < 0) { s.push(a.id); try { localStorage.setItem(STARTED, JSON.stringify(s)); } catch (e) {} }
+  }
+  function nextSuggestion(a) {
+    var s = started();
+    return picked().filter(function (x) { return x.id !== a.id && s.indexOf(x.id) < 0; })[0];
+  }
+
+  function openAfter(a) {
+    var sheet = $('#sheet');
+    sheet.className = 'sheet after';
+    sheet.innerHTML = '';
+
+    var top = el('div', 'tut-top');
+    var back = el('button', 'tut-back');
+    back.type = 'button';
+    back.setAttribute('aria-label', ui('back'));
+    back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="m15 18-6-6 6-6"/></svg>';
+    back.addEventListener('click', function () { openSheet(a); });
+    top.appendChild(back);
+    var close = el('button', 'm-close');
+    close.type = 'button';
+    close.setAttribute('aria-label', ui('close'));
+    close.innerHTML = IC.x;
+    close.addEventListener('click', closeSheet);
+    top.appendChild(close);
+    sheet.appendChild(top);
+
+    var body = el('div', 'after-body');
+    var store = storeUrl(a);
+    if (store) {
+      body.appendChild(el('h2', null, ui('afterTitle')));
+      var p = el('p', 'after-sub'); renderBold(p, fill(ui('afterSub'), a)); body.appendChild(p);
+      var again = document.createElement('a');
+      again.className = 'after-link'; again.href = store; again.target = '_blank'; again.rel = 'noopener';
+      again.textContent = ui('reopenStore');
+      body.appendChild(again);
+
+      var open = document.createElement('a');
+      open.className = 'btn btn-solid after-open';
+      open.href = launchUrl(a); open.target = '_blank'; open.rel = 'noopener';
+      open.textContent = fill(ui('openApp'), a);
+      body.appendChild(open);
+      body.appendChild(el('p', 'after-hint', ui('openAppHint')));
+    } else {
+      body.appendChild(el('h2', null, fill(ui('howToTitle'), a)));
+      var ol = el('ol', 'after-steps');
+      ['manual1', 'manual2', 'manual3'].forEach(function (k) {
+        var li = document.createElement('li'); renderBold(li, fill(ui(k), a)); ol.appendChild(li);
+      });
+      body.appendChild(ol);
+    }
+
+    var steps = (firstSteps && (firstSteps[a.id] || firstSteps['default'])) || [];
+    if (steps.length) {
+      body.appendChild(el('h3', 'after-h', ui('firstSteps')));
+      var fs = el('ol', 'after-steps');
+      steps.forEach(function (s) { var li = document.createElement('li'); renderBold(li, tr(s)); fs.appendChild(li); });
+      body.appendChild(fs);
+      var set = settingsUrl(a);
+      if (set) {
+        var sl = document.createElement('a');
+        sl.className = 'after-link'; sl.href = set; sl.target = '_blank'; sl.rel = 'noopener';
+        sl.textContent = ui('appSettings');
+        body.appendChild(sl);
+      }
+    }
+
+    var nx = nextSuggestion(a);
+    var foot = el('div', 'after-next');
+    if (nx) {
+      foot.appendChild(el('div', 'after-h', ui('nextUp')));
+      var nb = el('button', 'after-next-app');
+      nb.type = 'button';
+      nb.appendChild(el('strong', null, tr(nx.title, nx.id)));
+      nb.appendChild(el('span', null, tr(nx.tagline)));
+      nb.addEventListener('click', function () { openSheet(nx); });
+      foot.appendChild(nb);
+    }
+    var bk = el('button', 'btn btn-ghost', ui('backToList'));
+    bk.type = 'button';
+    bk.addEventListener('click', closeSheet);
+    foot.appendChild(bk);
+    body.appendChild(foot);
+    sheet.appendChild(body);
+
+    $('#ovl').setAttribute('aria-label', tr(a.title, a.id));
+    $('#ovl').classList.add('show');
+    document.body.classList.add('sheet-open');
+    close.focus();
+  }
+
   function renderBold(dest, text) {
     var parts = String(text || '').split(/\*\*([^*]+)\*\*/);
     parts.forEach(function (p, i) {
@@ -307,109 +420,6 @@ function indexApp() {
       }
     });
   }
-  function openTutorial(a) {
-    tutApp = a;
-    tutIndex = 0;
-    renderTutorial();
-    $('#ovl').setAttribute('aria-label', tr(a.title, a.id));
-    $('#ovl').classList.add('show');
-    document.body.classList.add('sheet-open');
-  }
-  function renderTutorial() {
-    var slides = (tutorial && tutorial.slides) || [];
-    var sheet = $('#sheet');
-    sheet.className = 'sheet tutorial';
-    sheet.innerHTML = '';
-
-    var top = el('div', 'tut-top');
-    var back = el('button', 'tut-back');
-    back.type = 'button';
-    back.setAttribute('aria-label', ui('back'));
-    back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="m15 18-6-6 6-6"/></svg>';
-    back.addEventListener('click', function () { openSheet(tutApp); });
-    top.appendChild(back);
-
-    var close = el('button', 'm-close');
-    close.type = 'button';
-    close.setAttribute('aria-label', ui('close'));
-    close.innerHTML = IC.x;
-    close.addEventListener('click', closeSheet);
-    top.appendChild(close);
-    sheet.appendChild(top);
-
-    if (slides.length === 0) {
-      sheet.appendChild(el('div', 'tut-empty', ui('tutorialEmpty') || 'Tutorial coming soon.'));
-      return;
-    }
-
-    var stage = el('div', 'tut-stage');
-    var slide = slides[tutIndex] || slides[0];
-    var img = document.createElement('img');
-    img.className = 'tut-img';
-    img.alt = '';
-    img.src = slide.image;
-    img.onerror = function () {
-      var ph = el('div', 'tut-ph');
-      ph.textContent = '📷';
-      img.replaceWith(ph);
-    };
-    stage.appendChild(img);
-    sheet.appendChild(stage);
-
-    var cap = el('div', 'tut-caption');
-    renderBold(cap, tr(slide.caption));
-    sheet.appendChild(cap);
-
-    var dots = el('div', 'tut-dots');
-    slides.forEach(function (_, i) {
-      var d = document.createElement('button');
-      d.type = 'button';
-      d.className = 'tut-dot' + (i === tutIndex ? ' on' : '');
-      d.setAttribute('aria-label', String(i + 1));
-      d.addEventListener('click', function () { tutIndex = i; renderTutorial(); });
-      dots.appendChild(d);
-    });
-    sheet.appendChild(dots);
-
-    var nav = el('div', 'tut-nav');
-    var prev = document.createElement('button');
-    prev.type = 'button';
-    prev.className = 'btn btn-ghost';
-    prev.textContent = ui('back');
-    prev.disabled = tutIndex === 0;
-    prev.addEventListener('click', function () { if (tutIndex > 0) { tutIndex--; renderTutorial(); } });
-    nav.appendChild(prev);
-
-    var isLast = tutIndex === slides.length - 1;
-    if (isLast) {
-      var casaosUrl = runtime && runtime.casaosUrl;
-      if (casaosUrl) {
-        var open = document.createElement('a');
-        open.className = 'btn btn-solid';
-        open.textContent = tr(tutorial.cta) || ui('install');
-        open.href = casaosUrl;
-        open.target = '_blank';
-        open.rel = 'noopener';
-        nav.appendChild(open);
-      } else {
-        var done = document.createElement('button');
-        done.type = 'button';
-        done.className = 'btn btn-solid';
-        done.textContent = ui('close');
-        done.addEventListener('click', closeSheet);
-        nav.appendChild(done);
-      }
-    } else {
-      var next = document.createElement('button');
-      next.type = 'button';
-      next.className = 'btn btn-solid';
-      next.textContent = ui('next');
-      next.addEventListener('click', function () { tutIndex++; renderTutorial(); });
-      nav.appendChild(next);
-    }
-    sheet.appendChild(nav);
-  }
-
   /* ---- community --------------------------------------------------- */
   var SN = {
     discord:  { label: 'Discord',  icon: IC.discord },

@@ -37,10 +37,11 @@ RUN chmod +x /docker-entrypoint.d/10-runtime-json.sh \
 # Markdown docs (served locally at /docs)
 COPY docs/ /usr/share/nginx/html/docs/
 
-# Runtime config the app fetches (onboarding, tags, site, install-tutorial)
-COPY config/onboarding.json config/tags.json config/site.json config/install-tutorial.json /usr/share/nginx/html/config/
+# Runtime config the app fetches (onboarding, tags, site, first steps)
+COPY config/onboarding.json config/tags.json config/site.json config/first-steps.json /usr/share/nginx/html/config/
 
 # Generated catalog baked in from stage 1
 COPY --from=catalog /build/public/catalog.json /usr/share/nginx/html/catalog.json
+COPY --from=catalog /build/public/icons/ /usr/share/nginx/html/icons/
 
 EXPOSE 80

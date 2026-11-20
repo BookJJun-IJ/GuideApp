@@ -1,0 +1,129 @@
+{
+  "_note": "Shown after the user starts an install: 2-3 first things to do in that app. Keyed by catalog id (lowercase). Apps without an entry get 'default'. Keep every step true for the store version of the app; **bold** is rendered.",
+  "default": [
+    {
+      "en": "Wait until Maison shows the app as ready, then open it.",
+      "fr": "Attendez que Maison indique que l'app est prête, puis ouvrez-la.",
+      "ko": "Maison에서 앱이 준비됐다고 나오면 열어 보세요."
+    },
+    {
+      "en": "If it asks you to sign in, the login is in the app's **Settings** in Maison.",
+      "fr": "S'il demande une connexion, les identifiants sont dans les **Paramètres** de l'app dans Maison.",
+      "ko": "로그인을 요구하면 Maison의 앱 **설정**에서 로그인 정보를 확인할 수 있어요."
+    }
+  ],
+  "immich": [
+    {
+      "en": "Open Immich and create your admin account.",
+      "fr": "Ouvrez Immich et créez votre compte administrateur.",
+      "ko": "Immich를 열고 관리자 계정을 만드세요."
+    },
+    {
+      "en": "Install the **Immich** app from the App Store or Google Play and enter your Immich address as the server URL.",
+      "fr": "Installez l'app **Immich** depuis l'App Store ou Google Play et saisissez l'adresse de votre Immich comme URL du serveur.",
+      "ko": "App Store나 Google Play에서 **Immich** 앱을 설치하고, 서버 URL에 내 Immich 주소를 입력하세요."
+    },
+    {
+      "en": "Turn on **Backup** in the phone app so new photos upload automatically.",
+      "fr": "Activez la **sauvegarde** dans l'app mobile pour envoyer les nouvelles photos automatiquement.",
+      "ko": "휴대폰 앱에서 **백업**을 켜면 새 사진이 자동으로 올라가요."
+    }
+  ],
+  "jellyfin": [
+    {
+      "en": "Open Jellyfin and finish the setup wizard.",
+      "fr": "Ouvrez Jellyfin et terminez l'assistant de configuration.",
+      "ko": "Jellyfin을 열고 초기 설정 마법사를 끝내세요."
+    },
+    {
+      "en": "Add a library pointing at the folder where your movies or shows are.",
+      "fr": "Ajoutez une médiathèque qui pointe vers le dossier de vos films ou séries.",
+      "ko": "영화나 시리즈가 있는 폴더를 라이브러리로 추가하세요."
+    },
+    {
+      "en": "Install the **Jellyfin** app on your phone or TV and enter your Jellyfin address.",
+      "fr": "Installez l'app **Jellyfin** sur votre téléphone ou votre TV et saisissez l'adresse de votre Jellyfin.",
+      "ko": "휴대폰이나 TV에 **Jellyfin** 앱을 설치하고 내 Jellyfin 주소를 입력하세요."
+    }
+  ],
+  "docmost": [
+    {
+      "en": "Open Docmost and create your workspace.",
+      "fr": "Ouvrez Docmost et créez votre espace de travail.",
+      "ko": "Docmost를 열고 워크스페이스를 만드세요."
+    },
+    {
+      "en": "Create a space and write your first page.",
+      "fr": "Créez un espace et rédigez votre première page.",
+      "ko": "스페이스를 만들고 첫 페이지를 써 보세요."
+    },
+    {
+      "en": "Invite your team from **Settings > Members**.",
+      "fr": "Invitez votre équipe depuis **Paramètres > Membres**.",
+      "ko": "**Settings > Members**에서 팀원을 초대하세요."
+    }
+  ],
+  "odoo": [
+    {
+      "en": "Open Odoo and sign in.",
+      "fr": "Ouvrez Odoo et connectez-vous.",
+      "ko": "Odoo를 열고 로그인하세요."
+    },
+    {
+      "en": "Install the modules you need (CRM, Invoicing, Inventory…) from the **Apps** menu.",
+      "fr": "Installez les modules dont vous avez besoin (CRM, Facturation, Inventaire…) depuis le menu **Applications**.",
+      "ko": "**Apps** 메뉴에서 필요한 모듈(CRM, 인보이스, 재고 등)을 설치하세요."
+    },
+    {
+      "en": "Add your colleagues in **Settings > Users**.",
+      "fr": "Ajoutez vos collègues dans **Paramètres > Utilisateurs**.",
+      "ko": "**Settings > Users**에서 동료를 추가하세요."
+    }
+  ],
+  "suwayomi": [
+    {
+      "en": "Open Suwayomi and sign in — the login is in the app's **Settings** in Maison.",
+      "fr": "Ouvrez Suwayomi et connectez-vous — les identifiants sont dans les **Paramètres** de l'app dans Maison.",
+      "ko": "Suwayomi를 열고 로그인하세요. 로그인 정보는 Maison의 앱 **설정**에 있어요."
+    },
+    {
+      "en": "Go to **Browse > Extensions** and install a source.",
+      "fr": "Allez dans **Parcourir > Extensions** et installez une source.",
+      "ko": "**Browse > Extensions**에서 소스를 설치하세요."
+    },
+    {
+      "en": "Add the series you follow to your **Library**.",
+      "fr": "Ajoutez les séries que vous suivez à votre **Bibliothèque**.",
+      "ko": "보고 있는 시리즈를 **Library**에 추가하세요."
+    }
+  ],
+  "vaultwarden": [
+    {
+      "en": "Open Vaultwarden and create your account.",
+      "fr": "Ouvrez Vaultwarden et créez votre compte.",
+      "ko": "Vaultwarden을 열고 계정을 만드세요."
+    },
+    {
+      "en": "Install the **Bitwarden** browser extension or phone app, choose **self-hosted** and enter your Vaultwarden address.",
+      "fr": "Installez l'extension de navigateur ou l'app mobile **Bitwarden**, choisissez **auto-hébergé** et saisissez l'adresse de votre Vaultwarden.",
+      "ko": "**Bitwarden** 브라우저 확장이나 휴대폰 앱을 설치하고 **self-hosted**를 고른 뒤 내 Vaultwarden 주소를 입력하세요."
+    },
+    {
+      "en": "Import your passwords from your old manager.",
+      "fr": "Importez vos mots de passe depuis votre ancien gestionnaire.",
+      "ko": "예전에 쓰던 비밀번호 관리자에서 비밀번호를 가져오세요."
+    }
+  ],
+  "nextcloud": [
+    {
+      "en": "Open Nextcloud and sign in — the login is in the app's **Settings** in Maison.",
+      "fr": "Ouvrez Nextcloud et connectez-vous — les identifiants sont dans les **Paramètres** de l'app dans Maison.",
+      "ko": "Nextcloud를 열고 로그인하세요. 로그인 정보는 Maison의 앱 **설정**에 있어요."
+    },
+    {
+      "en": "Install the **Nextcloud** desktop or phone app and log in with your Nextcloud address to sync your files.",
+      "fr": "Installez l'app **Nextcloud** pour ordinateur ou téléphone et connectez-vous avec l'adresse de votre Nextcloud pour synchroniser vos fichiers.",
+      "ko": "**Nextcloud** 데스크톱이나 휴대폰 앱을 설치하고 내 Nextcloud 주소로 로그인하면 파일이 동기화돼요."
+    }
+  ]
+}
