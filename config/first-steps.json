@@ -19,9 +19,9 @@
       "ko": "Immich를 열고 관리자 계정을 만드세요."
     },
     {
-      "en": "Install the **Immich** app from the App Store or Google Play and enter your Immich address as the server URL.",
-      "fr": "Installez l'app **Immich** depuis l'App Store ou Google Play et saisissez l'adresse de votre Immich comme URL du serveur.",
-      "ko": "App Store나 Google Play에서 **Immich** 앱을 설치하고, 서버 URL에 내 Immich 주소를 입력하세요."
+      "en": "Install the **Immich** app from the App Store or Google Play and enter your Immich address with dots (like **immich.yourname.nsl.sh**) as the server URL.",
+      "fr": "Installez l'app **Immich** depuis l'App Store ou Google Play et saisissez l'adresse de votre Immich avec des points (comme **immich.votrenom.nsl.sh**) comme URL du serveur.",
+      "ko": "App Store나 Google Play에서 **Immich** 앱을 설치하고, 서버 URL에 내 Immich 주소(점 주소, 예: **immich.yourname.nsl.sh**)를 입력하세요."
     },
     {
       "en": "Turn on **Backup** in the phone app so new photos upload automatically.",
@@ -41,9 +41,9 @@
       "ko": "영화나 시리즈가 있는 폴더를 라이브러리로 추가하세요."
     },
     {
-      "en": "Install the **Jellyfin** app on your phone or TV and enter your Jellyfin address.",
-      "fr": "Installez l'app **Jellyfin** sur votre téléphone ou votre TV et saisissez l'adresse de votre Jellyfin.",
-      "ko": "휴대폰이나 TV에 **Jellyfin** 앱을 설치하고 내 Jellyfin 주소를 입력하세요."
+      "en": "Install the **Jellyfin** app on your phone or TV and enter your Jellyfin address with dots (like **jellyfin.yourname.nsl.sh**).",
+      "fr": "Installez l'app **Jellyfin** sur votre téléphone ou votre TV et saisissez l'adresse de votre Jellyfin avec des points (comme **jellyfin.votrenom.nsl.sh**).",
+      "ko": "휴대폰이나 TV에 **Jellyfin** 앱을 설치하고 내 Jellyfin 주소(점 주소, 예: **jellyfin.yourname.nsl.sh**)를 입력하세요."
     }
   ],
   "docmost": [
@@ -104,9 +104,9 @@
       "ko": "Vaultwarden을 열고 계정을 만드세요."
     },
     {
-      "en": "Install the **Bitwarden** browser extension or phone app, choose **self-hosted** and enter your Vaultwarden address.",
-      "fr": "Installez l'extension de navigateur ou l'app mobile **Bitwarden**, choisissez **auto-hébergé** et saisissez l'adresse de votre Vaultwarden.",
-      "ko": "**Bitwarden** 브라우저 확장이나 휴대폰 앱을 설치하고 **self-hosted**를 고른 뒤 내 Vaultwarden 주소를 입력하세요."
+      "en": "Install the **Bitwarden** browser extension or phone app, choose **self-hosted** and enter your Vaultwarden address with dots (like **vaultwarden.yourname.nsl.sh**).",
+      "fr": "Installez l'extension de navigateur ou l'app mobile **Bitwarden**, choisissez **auto-hébergé** et saisissez l'adresse de votre Vaultwarden avec des points (comme **vaultwarden.votrenom.nsl.sh**).",
+      "ko": "**Bitwarden** 브라우저 확장이나 휴대폰 앱을 설치하고 **self-hosted**를 고른 뒤 내 Vaultwarden 주소(점 주소, 예: **vaultwarden.yourname.nsl.sh**)를 입력하세요."
     },
     {
       "en": "Import your passwords from your old manager.",
@@ -121,9 +121,9 @@
       "ko": "Nextcloud를 열고 로그인하세요. 로그인 정보는 Maison의 앱 **설정**에 있어요."
     },
     {
-      "en": "Install the **Nextcloud** desktop or phone app and log in with your Nextcloud address to sync your files.",
-      "fr": "Installez l'app **Nextcloud** pour ordinateur ou téléphone et connectez-vous avec l'adresse de votre Nextcloud pour synchroniser vos fichiers.",
-      "ko": "**Nextcloud** 데스크톱이나 휴대폰 앱을 설치하고 내 Nextcloud 주소로 로그인하면 파일이 동기화돼요."
+      "en": "Install the **Nextcloud** desktop or phone app and log in with your Nextcloud address with dots (like **nextcloud.yourname.nsl.sh**) to sync your files.",
+      "fr": "Installez l'app **Nextcloud** pour ordinateur ou téléphone et connectez-vous avec l'adresse de votre Nextcloud avec des points (comme **nextcloud.votrenom.nsl.sh**) pour synchroniser vos fichiers.",
+      "ko": "**Nextcloud** 데스크톱이나 휴대폰 앱을 설치하고 내 Nextcloud 주소(점 주소, 예: **nextcloud.yourname.nsl.sh**)로 로그인하면 파일이 동기화돼요."
     }
   ]
 }

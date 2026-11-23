@@ -13,14 +13,14 @@ Immich backs up every photo and video from your phone to your PCS. Private, auto
 ### iPhone
 
 1. Download **Immich** from the App Store
-2. Enter your PCS URL (e.g. `https://immich-yourname.nsl.sh`)
+2. Enter your Immich URL with dots (e.g. `https://immich.yourname.nsl.sh`)
 3. Log in and allow photo access
 4. Turn on **Auto Backup**
 
 ### Android
 
 1. Download **Immich** from Google Play
-2. Enter your PCS URL
+2. Enter the same Immich URL with dots
 3. Log in and allow photo access
 4. Turn on **Auto Backup**
 
@@ -40,4 +40,8 @@ Your photos will start uploading in the background. Leave the app open for the f
 
 ## Large Uploads
 
-If you're uploading from a computer and the files are large, use the **sslip.io** URL instead of nsl.sh.
+Use the address with dots (`immich.yourname.nsl.sh`), on your phone and on your computer. It goes straight to your PCS, so there is no upload size limit and your traffic is encrypted all the way.
+
+The old address with a dash (`immich-yourname.nsl.sh`) still works, but it always goes through the Yundera gateway.
+
+> **Good to know:** if your PCS has no public IP (tunnel mode), the dot address also goes through the gateway.
