@@ -3,9 +3,12 @@
  * sync-catalog.mjs — build-time AppStore → catalog.json
  *
  * Reads a local clone of the Yundera/AppStore repo, extracts each app's
- * x-casaos metadata, merges our editorial overlay (tags + setup links),
+ * store metadata (x-compose-app, which Maison reads; x-casaos as fallback for
+ * older listings), merges our editorial overlay (tags + setup links),
  * validates tags against the canonical vocabulary, and emits catalog.json
- * baked into the Guide image. No runtime network dependency.
+ * baked into the Guide image. Store icons are copied next to it under
+ * icons/, since the store lists them as paths relative to the app folder.
+ * No runtime network dependency.
  *
  * Usage:
  *   node scripts/sync-catalog.mjs \
@@ -14,8 +17,8 @@
  *     --tags config/tags.json \
  *     --out public/catalog.json
  */
-import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, copyFileSync } from 'node:fs';
+import { join, dirname, extname } from 'node:path';
 import yaml from 'js-yaml';
 
 /* ---- args -------------------------------------------------------------- */
@@ -92,16 +95,38 @@ for (const folder of readdirSync(appsDir).sort()) {
     warnings.push(`${folder}: YAML parse failed — ${e.message}`);
     continue;
   }
-  const x = doc && doc['x-casaos'];
-  if (!x) {
-    warnings.push(`${folder}: no x-casaos block, skipped`);
+  const xc = (doc && doc['x-casaos']) || {};
+  const xa = (doc && doc['x-compose-app']) || {};
+  if (!doc || (!doc['x-casaos'] && !doc['x-compose-app'])) {
+    warnings.push(`${folder}: no x-compose-app or x-casaos block, skipped`);
     continue;
   }
+  // Maison reads x-compose-app; x-casaos only fills what an older listing lacks.
+  const x = { ...xc, ...xa };
 
-  const id = (x.store_app_id || folder).toLowerCase();
+  const id = (xc.store_app_id || xa.id || folder).toLowerCase();
   const ov = overlay[id] || {};
 
-  // effective tags = store x-casaos.tags UNION overlay tags
+  // Maison names an installed app after the compose `name:`, else the folder
+  // lowercased with anything but [a-z0-9_-] dropped. /launch?app= takes this.
+  const project = String(doc.name || folder).toLowerCase().replace(/[^a-z0-9_-]/g, '');
+
+  // Store icons are relative to the app folder: copy them into the image.
+  let icon = x.icon || null;
+  if (icon && !/^https?:\/\//.test(icon)) {
+    const src = join(appsDir, folder, icon);
+    if (existsSync(src)) {
+      const name = `${id}${extname(icon) || '.png'}`;
+      mkdirSync(join(dirname(OUT), 'icons'), { recursive: true });
+      copyFileSync(src, join(dirname(OUT), 'icons', name));
+      icon = `icons/${name}`;
+    } else {
+      warnings.push(`${folder}: icon ${icon} not found`);
+      icon = null;
+    }
+  }
+
+  // effective tags = store tags UNION overlay tags
   const storeTags = Array.isArray(x.tags) ? x.tags : [];
   const tags = [...new Set([...storeTags, ...(ov.tags || [])])];
   for (const t of tags) {
@@ -112,14 +137,15 @@ for (const folder of readdirSync(appsDir).sort()) {
   apps.push({
     id,
     folder,
+    project,
     category: x.category || null,
     tags,
     title: i18n(x.title) || { en: folder },
     tagline: i18n(x.tagline),
     description: i18n(x.description),
-    icon: x.icon || null,
+    icon,
     thumbnail: x.thumbnail || null,
-    screenshots: x.screenshot_link || [],
+    screenshots: x.screenshots || x.screenshot_link || [],
     author: x.author || null,
     developer: x.developer || null,
     setup: ov.setup || null,
